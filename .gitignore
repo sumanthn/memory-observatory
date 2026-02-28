@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Output (generated at runtime)
+output/traces/
+output/memories/
+output/costs/
+output/dashboard_data.json
+output/report.md
+
+# Keep output dirs in git
+!output/.gitkeep
+
+# Environment
+.env
+*.txt
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Observatory</title>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+  <script src="https://unpkg.com/recharts@2.5.0/umd/Recharts.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.23.0/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-0: #06080d;
+      --bg-1: #0c0f16;
+      --bg-2: #12161f;
+      --bg-3: #1a1f2b;
+      --bg-4: #222837;
+      --border: #2a3040;
+      --border-light: #353d50;
+      --text-0: #f0f2f5;
+      --text-1: #c8cdd6;
+      --text-2: #8b93a5;
+      --text-3: #5c6478;
+      --accent: #7c5cfc;
+      --accent-dim: rgba(124, 92, 252, 0.15);
+      --green: #34d399;
+      --green-dim: rgba(52, 211, 153, 0.15);
+      --red: #f87171;
+      --red-dim: rgba(248, 113, 113, 0.15);
+      --orange: #fb923c;
+      --orange-dim: rgba(251, 146, 60, 0.15);
+      --blue: #60a5fa;
+      --blue-dim: rgba(96, 165, 250, 0.15);
+      --yellow: #fbbf24;
+      --cyan: #22d3ee;
+      --episodic: #60a5fa;
+      --semantic: #34d399;
+      --procedural: #fb923c;
+      --reflective: #f87171;
+    }
+
+    body {
+      background: var(--bg-0);
+      color: var(--text-1);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--border-light); }
+
+    /* Glow effects */
+    .glow-accent { box-shadow: 0 0 20px rgba(124, 92, 252, 0.08), 0 0 40px rgba(124, 92, 252, 0.04); }
+    .glow-green { box-shadow: 0 0 20px rgba(52, 211, 153, 0.08); }
+    .glow-red { box-shadow: 0 0 20px rgba(248, 113, 113, 0.08); }
+
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+    @keyframes countUp { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    .animate-in { animation: fadeIn 0.4s ease-out; }
+    .animate-slide { animation: slideIn 0.3s ease-out; }
+
+    /* Glass card */
+    .card {
+      background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-1) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--border-light); }
+
+    /* Stat cards */
+    .stat-card {
+      background: linear-gradient(135deg, var(--bg-3) 0%, var(--bg-2) 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      border-radius: 12px 12px 0 0;
+    }
+    .stat-card.accent::before { background: linear-gradient(90deg, var(--accent), #a78bfa); }
+    .stat-card.green::before { background: linear-gradient(90deg, #10b981, var(--green)); }
+    .stat-card.orange::before { background: linear-gradient(90deg, #f97316, var(--orange)); }
+    .stat-card.blue::before { background: linear-gradient(90deg, #3b82f6, var(--blue)); }
+    .stat-card.red::before { background: linear-gradient(90deg, #ef4444, var(--red)); }
+    .stat-value { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; animation: countUp 0.5s ease-out; }
+    .stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin-top: 4px; }
+    .stat-sub { font-size: 0.8rem; color: var(--text-2); margin-top: 6px; }
+
+    /* Nav tabs */
+    .nav-tab {
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-3);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-tab:hover { color: var(--text-1); }
+    .nav-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .badge-accent { background: var(--accent-dim); color: var(--accent); }
+    .badge-green { background: var(--green-dim); color: var(--green); }
+    .badge-red { background: var(--red-dim); color: var(--red); }
+    .badge-orange { background: var(--orange-dim); color: var(--orange); }
+    .badge-blue { background: var(--blue-dim); color: var(--blue); }
+
+    /* Score ring */
+    .score-ring {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1rem;
+    }
+
+    /* Select */
+    .select {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: var(--text-1);
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .select:focus { border-color: var(--accent); }
+
+    /* Token bar */
+    .token-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 0;
+    }
+    .token-bar-label { width: 160px; text-align: right; font-size: 0.82rem; color: var(--text-2); flex-shrink: 0; }
+    .token-bar-track { flex: 1; height: 28px; background: var(--bg-1); border-radius: 6px; overflow: hidden; position: relative; }
+    .token-bar-fill { height: 100%; border-radius: 6px; transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1); min-width: 3px; }
+    .token-bar-value { width: 100px; text-align: right; font-size: 0.82rem; color: var(--text-2); flex-shrink: 0; }
+
+    /* Diff view */
+    .diff-panel {
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      height: 500px;
+      overflow-y: auto;
+    }
+    .diff-panel pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--text-1);
+    }
+
+    /* Memory timeline */
+    .mem-type-card {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .mem-type-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .mem-type-card.episodic::before { background: var(--episodic); }
+    .mem-type-card.semantic::before { background: var(--semantic); }
+    .mem-type-card.procedural::before { background: var(--procedural); }
+    .mem-type-card.reflective::before { background: var(--reflective); }
+
+    /* Criteria checklist */
+    .criteria-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      font-size: 0.82rem;
+    }
+    .criteria-icon {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .criteria-pass { background: var(--green-dim); color: var(--green); }
+    .criteria-fail { background: var(--red-dim); color: var(--red); }
+
+    /* Layout helpers */
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-2 { gap: 8px; }
+    .gap-3 { gap: 12px; }
+    .gap-4 { gap: 16px; }
+    .gap-6 { gap: 24px; }
+    .mt-2 { margin-top: 8px; }
+    .mt-4 { margin-top: 16px; }
+    .mt-6 { margin-top: 24px; }
+    .mb-2 { margin-bottom: 8px; }
+    .mb-4 { margin-bottom: 16px; }
+    .mb-6 { margin-bottom: 24px; }
+
+    .recharts-cartesian-grid-horizontal line,
+    .recharts-cartesian-grid-vertical line {
+      stroke: var(--border) !important;
+    }
+    .recharts-tooltip-wrapper { outline: none !important; }
+
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo, useCallback } = React;
+    const {
+      BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid,
+      Tooltip, Legend, ResponsiveContainer, Cell, RadarChart, Radar,
+      PolarGrid, PolarAngleAxis, PolarRadiusAxis, AreaChart, Area
+    } = Recharts;
+
+    const COLORS = {
+      without_memory: '#6b7280',
+      partial_memory: '#fb923c',
+      with_memory: '#7c5cfc',
+    };
+    const LABELS = {
+      without_memory: 'No Memory',
+      partial_memory: 'Episodic Only',
+      with_memory: 'Full Memory',
+    };
+    const MEM_COLORS = {
+      episodic: '#60a5fa',
+      semantic: '#34d399',
+      procedural: '#fb923c',
+      reflective: '#f87171',
+    };
+
+    // Session category definitions
+    const CATEGORIES = [
+      { id: 'A', label: 'Initial Analysis', range: [1, 10] },
+      { id: 'B', label: 'Risk Deep-Dives', range: [11, 20] },
+      { id: 'C', label: 'Growth/Upside', range: [21, 30] },
+      { id: 'D', label: 'Comparisons', range: [31, 50] },
+      { id: 'E', label: 'Follow-ups', range: [51, 75] },
+      { id: 'F', label: 'Thematic Synthesis', range: [76, 88] },
+      { id: 'G', label: 'Deep Dives', range: [89, 100] },
+    ];
+
+    function getSessionIds(data) {
+      const titles = data.session_titles || {};
+      return Object.keys(titles).map(Number).sort((a, b) => a - b);
+    }
+
+    function getCategory(sid) {
+      return CATEGORIES.find(c => sid >= c.range[0] && sid <= c.range[1]) || CATEGORIES[0];
+    }
+
+    function rollingAvg(arr, window) {
+      return arr.map((_, i) => {
+        const start = Math.max(0, i - window + 1);
+        const slice = arr.slice(start, i + 1).filter(v => v != null);
+        return slice.length ? slice.reduce((s, v) => s + v, 0) / slice.length : null;
+      });
+    }
+
+    function CustomTooltip({ active, payload, label, formatter }) {
+      if (!active || !payload?.length) return null;
+      return (
+        <div style={{
+          background: 'var(--bg-3)',
+          border: '1px solid var(--border-light)',
+          borderRadius: 10,
+          padding: '10px 14px',
+          fontSize: '0.8rem',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+        }}>
+          <div style={{ color: 'var(--text-2)', marginBottom: 6, fontWeight: 600 }}>{label}</div>
+          {payload.map((p, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '2px 0' }}>
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: p.color }} />
+              <span style={{ color: 'var(--text-2)' }}>{p.name}:</span>
+              <span className="mono" style={{ color: 'var(--text-0)', fontWeight: 600 }}>
+                {formatter ? formatter(p.value) : p.value}
+              </span>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    // ================================================================
+    // APP
+    // ================================================================
+    function App() {
+      const [data, setData] = useState(null);
+      const [panel, setPanel] = useState('overview');
+      const [selExp, setSelExp] = useState('with_memory');
+      const [selSession, setSelSession] = useState(1);
+      const [selStep, setSelStep] = useState(1);
+      const [diffSession, setDiffSession] = useState(4);
+
+      useEffect(() => {
+        fetch('../output/dashboard_data.json')
+          .then(r => r.json())
+          .then(setData)
+          .catch(() => window.__OBSERVATORY_DATA__ && setData(window.__OBSERVATORY_DATA__));
+      }, []);
+
+      if (!data) return <LoadingScreen />;
+
+      const panels = [
+        { id: 'overview', label: 'Overview', icon: '~' },
+        { id: 'quality', label: 'Quality', icon: '~' },
+        { id: 'cost', label: 'Cost', icon: '~' },
+        { id: 'xray', label: 'Prompt X-Ray', icon: '~' },
+        { id: 'memory', label: 'Memory', icon: '~' },
+        { id: 'diff', label: 'A/B Diff', icon: '~' },
+      ];
+
+      return (
+        <div style={{ minHeight: '100vh', paddingBottom: 60 }}>
+          {/* Header */}
+          <header style={{
+            borderBottom: '1px solid var(--border)',
+            background: 'linear-gradient(180deg, var(--bg-2) 0%, var(--bg-0) 100%)',
+          }}>
+            <div className="container" style={{ padding: '28px 24px 0' }}>
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <div className="flex items-center gap-3">
+                    <div style={{
+                      width: 36, height: 36, borderRadius: 10,
+                      background: 'linear-gradient(135deg, var(--accent), #a78bfa)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: '1.1rem',
+                    }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h1 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-0)', letterSpacing: '-0.03em' }}>
+                        Memory Observatory
+                      </h1>
+                      <p style={{ fontSize: '0.78rem', color: 'var(--text-3)' }}>
+                        Transparent Agent Memory Experiments &mdash; StepFun Step 3.5 Flash
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  {Object.entries(data.experiments || {}).map(([key, exp]) => (
+                    <div key={key} style={{
+                      background: 'var(--bg-3)',
+                      border: `1px solid ${key === 'with_memory' ? 'var(--accent)' : 'var(--border)'}`,
+                      borderRadius: 10, padding: '10px 16px', minWidth: 130,
+                    }}>
+                      <div style={{ fontSize: '0.7rem', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
+                        {exp.label}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="mono" style={{
+                          fontSize: '1.3rem', fontWeight: 800,
+                          color: COLORS[key] || 'var(--text-0)',
+                        }}>
+                          {exp.avg_quality}
+                        </span>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--text-3)' }}>/10</span>
+                        <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--text-3)', marginLeft: 'auto' }}>
+                          ${exp.total_cost_usd?.toFixed(4)}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* Nav */}
+              <nav className="flex" style={{ gap: 2 }}>
+                {panels.map(p => (
+                  <button key={p.id} className={`nav-tab ${panel === p.id ? 'active' : ''}`} onClick={() => setPanel(p.id)}>
+                    {p.label}
+                  </button>
+                ))}
+              </nav>
+            </div>
+          </header>
+
+          {/* Content */}
+          <main className="container" style={{ paddingTop: 28 }}>
+            <div className="animate-in" key={panel}>
+              {panel === 'overview' && <OverviewPanel data={data} />}
+              {panel === 'quality' && <QualityPanel data={data} />}
+              {panel === 'cost' && <CostPanel data={data} />}
+              {panel === 'xray' && <XRayPanel data={data} exp={selExp} session={selSession} step={selStep} setExp={setSelExp} setSession={setSelSession} setStep={setSelStep} />}
+              {panel === 'memory' && <MemoryPanel data={data} />}
+              {panel === 'diff' && <DiffPanel data={data} session={diffSession} setSession={setDiffSession} />}
+            </div>
+          </main>
+        </div>
+      );
+    }
+
+    function LoadingScreen() {
+      return (
+        <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 16 }}>
+          <div style={{
+            width: 48, height: 48, borderRadius: 12,
+            background: 'linear-gradient(135deg, var(--accent), #a78bfa)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            animation: 'pulse 2s infinite',
+          }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          </div>
+          <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-0)' }}>Memory Observatory</div>
+          <div style={{ fontSize: '0.82rem', color: 'var(--text-3)' }}>Loading experiment data...</div>
+          <div className="mono" style={{ fontSize: '0.75rem', color: 'var(--text-3)', marginTop: 8, textAlign: 'center' }}>
+            Run <span style={{ color: 'var(--accent)', background: 'var(--accent-dim)', padding: '2px 8px', borderRadius: 4 }}>python main.py</span> first
+          </div>
+        </div>
+      );
+    }
+
+    // ================================================================
+    // OVERVIEW
+    // ================================================================
+    function OverviewPanel({ data }) {
+      const wm = data.experiments?.with_memory;
+      const nm = data.experiments?.without_memory;
+      const pm = data.experiments?.partial_memory;
+
+      const totalCalls = Object.values(data.experiments || {}).reduce((s, e) => s + (e.total_llm_calls || 0), 0);
+      const totalTokens = Object.values(data.experiments || {}).reduce((s, e) => s + (e.total_input_tokens || 0) + (e.total_output_tokens || 0), 0);
+      const totalCost = Object.values(data.experiments || {}).reduce((s, e) => s + (e.total_cost_usd || 0), 0);
+
+      const sessionIds = getSessionIds(data);
+
+      // Build rolling average data for the quality chart
+      const rawScores = sessionIds.map(s => ({
+        wm: wm?.quality_scores?.[s] ?? wm?.quality_scores?.[String(s)] ?? null,
+        nm: nm?.quality_scores?.[s] ?? nm?.quality_scores?.[String(s)] ?? null,
+        pm: pm?.quality_scores?.[s] ?? pm?.quality_scores?.[String(s)] ?? null,
+      }));
+      const wmRolling = rollingAvg(rawScores.map(r => r.wm), 10);
+      const nmRolling = rollingAvg(rawScores.map(r => r.nm), 10);
+      const pmRolling = rollingAvg(rawScores.map(r => r.pm), 10);
+      const qualData = sessionIds.map((s, i) => ({
+        session: `S${s}`,
+        name: data.session_titles?.[String(s)] || `Session ${s}`,
+        category: getCategory(s).id,
+        without_memory: nmRolling[i],
+        partial_memory: pmRolling[i],
+        with_memory: wmRolling[i],
+      }));
+
+      // Auto-detect session with largest memory delta for Key Insight banner
+      let bestDeltaSid = null, bestDelta = -Infinity;
+      sessionIds.forEach(s => {
+        const wmScore = wm?.quality_scores?.[s] ?? wm?.quality_scores?.[String(s)] ?? 0;
+        const nmScore = nm?.quality_scores?.[s] ?? nm?.quality_scores?.[String(s)] ?? 0;
+        const delta = wmScore - nmScore;
+        if (delta > bestDelta) { bestDelta = delta; bestDeltaSid = s; }
+      });
+      const best_nm = nm?.session_results?.[String(bestDeltaSid)] || nm?.session_results?.[bestDeltaSid];
+      const best_wm = wm?.session_results?.[String(bestDeltaSid)] || wm?.session_results?.[bestDeltaSid];
+      const bestTitle = data.session_titles?.[String(bestDeltaSid)] || `Session ${bestDeltaSid}`;
+
+      return (
+        <div className="flex flex-col gap-6">
+          {/* Hero stats */}
+          <div className="grid-5">
+            <div className="stat-card accent">
+              <div className="stat-value" style={{ color: 'var(--accent)' }}>{wm?.avg_quality || 0}</div>
+              <div className="stat-label">Full Memory Score</div>
+              <div className="stat-sub">out of 10</div>
+            </div>
+            <div className="stat-card green">
+              <div className="stat-value" style={{ color: 'var(--green)' }}>{wm?.memory_final_stats?.total_memories || 0}</div>
+              <div className="stat-label">Memories Formed</div>
+              <div className="stat-sub">across {sessionIds.length} sessions</div>
+            </div>
+            <div className="stat-card blue">
+              <div className="stat-value mono" style={{ color: 'var(--blue)' }}>{totalCalls}</div>
+              <div className="stat-label">Total LLM Calls</div>
+              <div className="stat-sub">all experiments</div>
+            </div>
+            <div className="stat-card orange">
+              <div className="stat-value mono" style={{ color: 'var(--orange)' }}>{(totalTokens/1000).toFixed(0)}k</div>
+              <div className="stat-label">Total Tokens</div>
+              <div className="stat-sub">input + output</div>
+            </div>
+            <div className="stat-card red">
+              <div className="stat-value mono" style={{ color: 'var(--yellow)' }}>${totalCost.toFixed(3)}</div>
+              <div className="stat-label">Total Cost</div>
+              <div className="stat-sub">all {sessionIds.length * Object.keys(data.experiments || {}).length} sessions</div>
+            </div>
+          </div>
+
+          {/* Key insight banner */}
+          <div className="card glow-accent" style={{ borderColor: 'rgba(124,92,252,0.3)' }}>
+            <div className="flex items-center gap-4">
+              <div style={{
+                width: 56, height: 56, borderRadius: 14,
+                background: 'linear-gradient(135deg, var(--accent), #a78bfa)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <span style={{ fontSize: '1.5rem' }}>&#9733;</span>
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-0)', marginBottom: 4 }}>
+                  Key Finding: Memory Makes the Biggest Difference on S{bestDeltaSid} ({bestTitle})
+                </div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-2)' }}>
+                  Without memory, the agent scored <span className="mono" style={{ color: 'var(--red)', fontWeight: 700 }}>{best_nm?.quality_score ?? 'N/A'}/10</span> &mdash;
+                  it had to re-research everything from scratch.
+                  With full memory, it scored <span className="mono" style={{ color: 'var(--green)', fontWeight: 700 }}>{best_wm?.quality_score ?? 'N/A'}/10</span> by
+                  recalling prior research (delta: +{bestDelta}).
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quality mini-chart + session breakdown */}
+          <div className="grid-2">
+            <div className="card">
+              <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-0)', marginBottom: 4 }}>Quality Across Sessions</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-3)', marginBottom: 16 }}>Rolling 10-session average quality score</div>
+              <ResponsiveContainer width="100%" height={240}>
+                <LineChart data={qualData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                  <XAxis dataKey="session" tick={{ fill: 'var(--text-3)', fontSize: 12 }} stroke="var(--border)" />
+                  <YAxis domain={[0, 10]} tick={{ fill: 'var(--text-3)', fontSize: 12 }} stroke="var(--border)" />
+                  <Tooltip content={<CustomTooltip />} />
+                  {Object.keys(data.experiments || {}).map(k => (
+                    <Line key={k} type="monotone" dataKey={k} name={LABELS[k]} stroke={COLORS[k]}
+                      strokeWidth={k === 'with_memory' ? 3 : 2} dot={{ r: k === 'with_memory' ? 5 : 3, fill: COLORS[k] }}
+                      strokeDasharray={k === 'without_memory' ? '6 3' : undefined} />
+                  ))}
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+
+            <div className="card">
+              <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-0)', marginBottom: 4 }}>Session Summary by Category</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-3)', marginBottom: 12 }}>Average quality per category (full memory)</div>
+              <div className="flex flex-col gap-3" style={{ maxHeight: 400, overflowY: 'auto' }}>
+                {CATEGORIES.map(cat => {
+                  const catSids = sessionIds.filter(s => s >= cat.range[0] && s <= cat.range[1]);
+                  if (!catSids.length) return null;
+                  const scores = catSids.map(sid => wm?.quality_scores?.[sid] ?? wm?.quality_scores?.[String(sid)] ?? 0);
+                  const avg = scores.length ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1) : 0;
+                  const nmScores = catSids.map(sid => nm?.quality_scores?.[sid] ?? nm?.quality_scores?.[String(sid)] ?? 0);
+                  const nmAvg = nmScores.length ? (nmScores.reduce((a, b) => a + b, 0) / nmScores.length).toFixed(1) : 0;
+                  const delta = (avg - nmAvg).toFixed(1);
+                  return (
+                    <div key={cat.id} className="flex items-center gap-3" style={{ padding: '8px 12px', background: 'var(--bg-1)', borderRadius: 8, border: '1px solid var(--border)' }}>
+                      <div className="score-ring" style={{
+                        background: avg >= 8 ? 'var(--green-dim)' : avg >= 5 ? 'var(--orange-dim)' : 'var(--red-dim)',
+                        color: avg >= 8 ? 'var(--green)' : avg >= 5 ? 'var(--orange)' : 'var(--red)',
+                        width: 36, height: 36, fontSize: '0.85rem',
+                      }}>
+                        {avg}
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-0)' }}>{cat.id}: {cat.label}</div>
+                        <div style={{ fontSize: '0.72rem', color: 'var(--text-3)' }}>{catSids.length} sessions (S{cat.range[0]}-S{cat.range[1]})</div>
+                      </div>
+                      <span className={`badge ${delta > 0 ? 'badge-green' : delta < 0 ? 'badge-red' : 'badge-orange'}`}>
+                        {delta > 0 ? '+' : ''}{delta} vs no-mem
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // ================================================================
+    // QUALITY
+    // ================================================================
+    function QualityPanel({ data }) {
+      const [selSession, setSelSession] = useState(null);
+
+      const sessionIds = getSessionIds(data);
+
+      const qualData = sessionIds.map(s => {
+        const pt = { session: s, name: data.session_titles?.[String(s)] || `Session ${s}`, category: getCategory(s).id };
+        Object.keys(data.experiments || {}).forEach(k => {
+          const scores = data.experiments[k].quality_scores || {};
+          pt[k] = scores[s] ?? scores[String(s)] ?? null;
+        });
+        return pt;
+      });
+
+      const stepsData = sessionIds.map(s => {
+        const pt = { session: `S${s}`, name: data.session_titles?.[String(s)] || `Session ${s}` };
+        Object.keys(data.experiments || {}).forEach(k => {
+          const steps = data.experiments[k].steps_per_session || {};
+          pt[k] = steps[s] ?? steps[String(s)] ?? null;
+        });
+        return pt;
+      });
+
+      return (
+        <div className="flex flex-col gap-6">
+          <div className="card">
+            <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-0)', marginBottom: 4 }}>Quality Score Over Time</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-3)', marginBottom: 20 }}>
+              Ground-truth scoring (0-10) across {sessionIds.length} sessions. Watch for divergence in Categories E-G where cross-session knowledge is critical.
+            </div>
+            <ResponsiveContainer width="100%" height={360}>
+              <AreaChart data={qualData}>
+                <defs>
+                  <linearGradient id="gWm" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor={COLORS.with_memory} stopOpacity={0.2}/><stop offset="95%" stopColor={COLORS.with_memory} stopOpacity={0}/></linearGradient>
+                  <linearGradient id="gNm" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor={COLORS.without_memory} stopOpacity={0.15}/><stop offset="95%" stopColor={COLORS.without_memory} stopOpacity={0}/></linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                <XAxis dataKey="name" tick={{ fill: 'var(--text-3)', fontSize: 11 }} stroke="var(--border)" angle={-15} textAnchor="end" height={50} />
+                <YAxis domain={[0, 10.5]} tick={{ fill: 'var(--text-3)', fontSize: 12 }} stroke="var(--border)" />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend verticalAlign="top" height={36} iconType="circle" />
+                <Area type="monotone" dataKey="without_memory" name="No Memory" stroke={COLORS.without_memory} fill="url(#gNm)" strokeWidth={2} dot={{ r: 4 }} strokeDasharray="6 3" />
+                <Area type="monotone" dataKey="partial_memory" name="Episodic Only" stroke={COLORS.partial_memory} fill="transparent" strokeWidth={2} dot={{ r: 4 }} />
+                <Area type="monotone" dataKey="with_memory" name="Full Memory" stroke={COLORS.with_memory} fill="url(#gWm)" strokeWidth={3} dot={{ r: 5 }} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Steps comparison */}
+          <div className="card">
+            <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-0)', marginBottom: 4 }}>Steps Per Session</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-3)', marginBottom: 20 }}>
+              Fewer steps = more efficient. Compare how memory affects the agent's workflow.
+            </div>
+            <ResponsiveContainer width="100%" height={280}>
+              <BarChart data={stepsData} barGap={2}>
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                <XAxis dataKey="session" tick={{ fill: 'var(--text-3)', fontSize: 12 }} stroke="var(--border)" />
+                <YAxis tick={{ fill: 'var(--text-3)', fontSize: 12 }} stroke="var(--border)" />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend verticalAlign="top" height={36} iconType="circle" />
+                {Object.keys(data.experiments || {}).map(k => (
+                  <Bar key={k} dataKey={k} name={LABELS[k]} fill={COLORS[k]} radius={[4, 4, 0, 0]} />
+                ))}
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Per-session criteria */}
+          <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-0)', marginBottom: 4 }}>Quality Criteria Detail</div>
+          <div className="grid-3">
+            {Object.entries(data.experiments || {}).map(([expKey, exp]) => (
+              <div key={expKey} className="card" style={{ borderColor: `${COLORS[expKey]}33` }}>
+                <div className="flex items-center gap-2 mb-4">
+                  <div style={{ width: 10, height: 10, borderRadius: '50%', background: COLORS[expKey] }} />
+                  <span style={{ fontWeight: 600, color: 'var(--text-0)', fontSize: '0.85rem' }}>{LABELS[expKey]}</span>
+                  <span className="mono" style={{ marginLeft: 'auto', color: COLORS[expKey], fontWeight: 700 }}>{exp.avg_quality}/10</span>
+                </div>
+                {(() => {
+                  const [expanded, setExpanded] = useState(null);
+                  return CATEGORIES.map(cat => {
+                    const catSids = sessionIds.filter(s => s >= cat.range[0] && s <= cat.range[1]);
+                    if (!catSids.length) return null;
+                    const scores = catSids.map(sid => exp.quality_scores?.[sid] ?? exp.quality_scores?.[String(sid)] ?? 0);
+                    const avg = scores.length ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1) : 0;
+                    const isOpen = expanded === cat.id;
+                    return (
+                      <div key={cat.id} style={{ marginBottom: 8 }}>
+                        <div className="flex items-center gap-2" style={{ fontSize: '0.78rem', cursor: 'pointer', padding: '4px 0' }} onClick={() => setExpanded(isOpen ? null : cat.id)}>
+                          <span style={{ color: 'var(--text-3)', width: 12 }}>{isOpen ? '\u25BE' : '\u25B8'}</span>
+                          <span style={{ color: 'var(--text-2)', fontWeight: 600 }}>{cat.id}: {cat.label}</span>
+                          <span style={{ fontSize: '0.72rem', color: 'var(--text-3)' }}>({catSids.length})</span>
+                          <span className="mono" style={{ marginLeft: 'auto', color: avg >= 8 ? 'var(--green)' : avg >= 5 ? 'var(--orange)' : 'var(--red)', fontWeight: 700 }}>
+                            {avg}
+                          </span>
+                        </div>
+                        {isOpen && catSids.map(sid => {
+                          const r = exp.session_results?.[sid] || exp.session_results?.[String(sid)];
+                          if (!r) return null;
+                          const score = r.quality_score ?? 0;
+                          const details = r.quality_details || {};
+                          return (
+                            <div key={sid} style={{ marginBottom: 6, paddingLeft: 16 }}>
+                              <div className="flex items-center gap-2" style={{ fontSize: '0.72rem' }}>
+                                <span style={{ color: 'var(--text-3)' }}>S{sid}</span>
+                                <span style={{ color: 'var(--text-3)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{data.session_titles?.[String(sid)]}</span>
+                                <span className="mono" style={{ color: score >= 8 ? 'var(--green)' : 'var(--red)', fontWeight: 700 }}>{score}</span>
+                              </div>
+                              <div style={{ display: 'flex', gap: 2, flexWrap: 'wrap', marginTop: 2 }}>
+                                {Object.entries(details).map(([cname, c]) => (
+                                  <div key={cname} style={{ width: 6, height: 6, borderRadius: 1, background: c.met ? 'var(--green)' : 'var(--bg-4)' }} title={cname} />
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  });
+                })()}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // ================================================================
+    // COST
+    // ================================================================
+    function CostPanel({ data }) {
+      const costData = Object.entries(data.experiments || {}).map(([k, exp]) => ({
+        name: LABELS[k], experiment: k,
+        cost: exp.total_cost_usd || 0,
+        calls: exp.total_llm_calls || 0,
+        input_tok: exp.total_input_tokens || 0,
+        output_tok: exp.total_output_tokens || 0,
+      }));
+
+      const sessionIds = getSessionIds(data);
+      const sessionCostData = sessionIds.map(s => {
+        const pt = { session: `S${s}`, name: data.session_titles?.[String(s)] || '' };
+        Object.keys(data.experiments || {}).forEach(k => {
+          const costs = data.experiments[k].session_costs || {};
+          pt[k] = (costs[s] ?? costs[String(s)] ?? 0) * 1000; // Show in millicents for readability
+        });
+        return pt;
+      });
+
+      return (
+        <div className="flex flex-col gap-6">
+          {/* Total cost cards */}
+          <div className="grid-3">
+            {costData.map(c => (
+              <div key={c.experiment} className="stat-card" style={{ borderColor: `${COLORS[c.experiment]}44` }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: COLORS[c.experiment] }} />
+                <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-3)', marginBottom: 8 }}>{c.name}</div>
+                <div className="mono" style={{ fontSize: '2rem', fontWeight: 800, color: COLORS[c.experiment] }}>
+                  ${c.cost.toFixed(4)}
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 12, fontSize: '0.78rem' }}>
+                  <div><span style={{ color: 'var(--text-3)' }}>Calls:</span> <span className="mono" style={{ color: 'var(--text-1)' }}>{c.calls}</span></div>
+                  <div><span style={{ color: 'var(--text-3)' }}>Tokens:</span> <span className="mono" style={{ color: 'var(--text-1)' }}>{((c.input_tok + c.output_tok)/1000).toFixed(0)}k</span></div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Per-session cost chart */}
+          <div className="card">
+            <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-0)', marginBottom: 4 }}>Cost Per Session</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-3)', marginBottom: 20 }}>
+              In thousandths of a cent. Memory adds consolidation overhead but should reduce re-research cost.
+            </div>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={sessionCostData} barGap={2}>
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                <XAxis dataKey="session" tick={{ fill: 'var(--text-3)', fontSize: 12 }} stroke="var(--border)" />
+                <YAxis tick={{ fill: 'var(--text-3)', fontSize: 12 }} stroke="var(--border)" tickFormatter={v => `$${(v/1000).toFixed(3)}`} />
+                <Tooltip content={<CustomTooltip formatter={v => `$${(v/1000).toFixed(4)}`} />} />
+                <Legend verticalAlign="top" height={36} iconType="circle" />
+                {Object.keys(data.experiments || {}).map(k => (
+                  <Bar key={k} dataKey={k} name={LABELS[k]} fill={COLORS[k]} radius={[4, 4, 0, 0]} />
+                ))}
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Token breakdown table */}
+          <div className="card">
+            <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-0)', marginBottom: 16 }}>Token & Cost Breakdown</div>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                  <th style={{ textAlign: 'left', padding: '8px 12px', color: 'var(--text-3)', fontWeight: 600 }}>Metric</th>
+                  {Object.keys(data.experiments || {}).map(k => (
+                    <th key={k} style={{ textAlign: 'right', padding: '8px 12px', color: COLORS[k], fontWeight: 600 }}>{LABELS[k]}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { label: 'LLM Calls', key: 'total_llm_calls', fmt: v => v },
+                  { label: 'Input Tokens', key: 'total_input_tokens', fmt: v => v?.toLocaleString() },
+                  { label: 'Output Tokens', key: 'total_output_tokens', fmt: v => v?.toLocaleString() },
+                  { label: 'Total Cost', key: 'total_cost_usd', fmt: v => `$${v?.toFixed(4)}` },
+                  { label: 'Avg Quality', key: 'avg_quality', fmt: v => `${v}/10` },
+                ].map(row => (
+                  <tr key={row.label} style={{ borderBottom: '1px solid var(--border)' }}>
+                    <td style={{ padding: '8px 12px', color: 'var(--text-2)' }}>{row.label}</td>
+                    {Object.keys(data.experiments || {}).map(k => (
+                      <td key={k} className="mono" style={{ textAlign: 'right', padding: '8px 12px', color: 'var(--text-1)' }}>
+                        {row.fmt(data.experiments[k]?.[row.key])}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+    }
+
+    // ================================================================
+    // PROMPT X-RAY
+    // ================================================================
+    function XRayPanel({ data, exp, session, step, setExp, setSession, setStep }) {
+      const expData = data.experiments?.[exp];
+      const traces = expData?.traces || [];
+      const sessionTraces = useMemo(() => traces.filter(t => t.session === session), [traces, session]);
+      const trace = sessionTraces[step - 1] || null;
+
+      const sections = trace ? [
+        { label: 'System Prompt', tokens: trace.prompt?.system_tokens || 0, color: '#7c5cfc' },
+        { label: 'Retrieved Memories', tokens: trace.prompt?.memory_tokens || 0, color: '#34d399' },
+        { label: 'Working Memory', tokens: trace.prompt?.working_memory_tokens || 0, color: '#fbbf24' },
+        { label: 'Conversation History', tokens: trace.prompt?.conversation_history_tokens || 0, color: '#60a5fa' },
+        { label: 'Tool Definitions', tokens: trace.prompt?.tool_definitions_tokens || 0, color: '#a78bfa' },
+        { label: 'Task Context', tokens: trace.prompt?.task_context_tokens || 0, color: '#fb923c' },
+      ] : [];
+
+      const totalTokens = sections.reduce((s, x) => s + x.tokens, 0);
+      const maxTokens = Math.max(...sections.map(s => s.tokens), 1);
+
+      return (
+        <div className="flex flex-col gap-6">
+          {/* Selectors */}
+          <div className="card">
+            <div className="flex items-center gap-4 mb-6">
+              <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-0)' }}>Prompt X-Ray</div>
+              <div style={{ flex: 1 }} />
+              <label className="flex flex-col gap-1">
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Experiment</span>
+                <select className="select" value={exp} onChange={e => { setExp(e.target.value); setStep(1); }}>
+                  {Object.entries(data.experiments || {}).map(([k, e]) => <option key={k} value={k}>{e.label}</option>)}
+                </select>
+              </label>
+              <label className="flex flex-col gap-1">
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Session</span>
+                <select className="select" value={session} onChange={e => { setSession(Number(e.target.value)); setStep(1); }}>
+                  {getSessionIds(data).map(s => <option key={s} value={s}>S{s}: {data.session_titles?.[String(s)]}</option>)}
+                </select>
+              </label>
+              <label className="flex flex-col gap-1">
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Step</span>
+                <select className="select" value={step} onChange={e => setStep(Number(e.target.value))}>
+                  {sessionTraces.map((_, i) => <option key={i+1} value={i+1}>Step {i+1}</option>)}
+                  {!sessionTraces.length && <option>No data</option>}
+                </select>
+              </label>
+            </div>
+
+            {trace ? (
+              <div>
+                {/* Token bars */}
+                <div className="flex flex-col gap-1">
+                  {sections.map((sec, i) => (
+                    <div key={i} className="token-bar-row">
+                      <div className="token-bar-label">{sec.label}</div>
+                      <div className="token-bar-track">
+                        <div className="token-bar-fill" style={{
+                          width: `${Math.max((sec.tokens / maxTokens) * 100, sec.tokens > 0 ? 1 : 0)}%`,
+                          background: `linear-gradient(90deg, ${sec.color}, ${sec.color}aa)`,
+                        }} />
+                      </div>
+                      <div className="token-bar-value mono">{sec.tokens.toLocaleString()}</div>
+                    </div>
+                  ))}
+                  <div className="token-bar-row" style={{ borderTop: '1px solid var(--border)', paddingTop: 8, marginTop: 4 }}>
+                    <div className="token-bar-label" style={{ fontWeight: 700, color: 'var(--text-0)' }}>TOTAL INPUT</div>
+                    <div style={{ flex: 1 }} />
+                    <div className="token-bar-value mono" style={{ fontWeight: 700, color: 'var(--text-0)' }}>{totalTokens.toLocaleString()}</div>
+                  </div>
+                  <div className="token-bar-row">
+                    <div className="token-bar-label" style={{ color: 'var(--text-3)' }}>Output</div>
+                    <div style={{ flex: 1 }} />
+                    <div className="token-bar-value mono" style={{ color: 'var(--text-2)' }}>{(trace.response?.output_tokens || 0).toLocaleString()}</div>
+                  </div>
+                  <div className="token-bar-row">
+                    <div className="token-bar-label" style={{ color: 'var(--accent)' }}>Cost</div>
+                    <div style={{ flex: 1 }} />
+                    <div className="token-bar-value mono" style={{ color: 'var(--accent)', fontWeight: 700 }}>${trace.cost?.total_cost_usd?.toFixed(6)}</div>
+                  </div>
+                  <div className="token-bar-row">
+                    <div className="token-bar-label" style={{ color: 'var(--text-3)' }}>Latency</div>
+                    <div style={{ flex: 1 }} />
+                    <div className="token-bar-value mono" style={{ color: 'var(--text-2)' }}>{(trace.response?.latency_ms || 0).toFixed(0)}ms</div>
+                  </div>
+                </div>
+
+                {/* Action taken */}
+                {trace.response?.action && (
+                  <div className="mt-4" style={{ padding: '12px 16px', background: 'var(--bg-1)', border: '1px solid var(--border)', borderRadius: 8 }}>
+                    <span className="badge badge-blue" style={{ marginBottom: 6 }}>Tool Call</span>
+                    <div className="mono" style={{ fontSize: '0.82rem', color: 'var(--text-1)', marginTop: 6 }}>
+                      {trace.response.action.tool}({JSON.stringify(trace.response.action.args)})
+                    </div>
+                  </div>
+                )}
+                {trace.response?.is_final_answer && (
+                  <div className="mt-4" style={{ padding: '12px 16px', background: 'var(--green-dim)', border: '1px solid rgba(52,211,153,0.2)', borderRadius: 8 }}>
+                    <span className="badge badge-green">Final Answer</span>
+                  </div>
+                )}
+
+                {/* Memory items */}
+                {trace.prompt?.memory_items?.length > 0 && (
+                  <div className="mt-6">
+                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-0)', marginBottom: 8 }}>Retrieved Memories</div>
+                    <div className="flex flex-col gap-2">
+                      {trace.prompt.memory_items.map((item, i) => (
+                        <div key={i} style={{ padding: '10px 14px', background: 'var(--bg-1)', border: '1px solid var(--border)', borderRadius: 8, borderLeft: `3px solid ${MEM_COLORS[item.type] || 'var(--text-3)'}` }}>
+                          <div className="flex items-center gap-2" style={{ marginBottom: 4 }}>
+                            <span className={`badge badge-${item.type === 'episodic' ? 'blue' : item.type === 'semantic' ? 'green' : item.type === 'procedural' ? 'orange' : 'red'}`}>
+                              {item.type}
+                            </span>
+                            <span style={{ fontSize: '0.72rem', color: 'var(--text-3)' }}>session {item.source_session}</span>
+                            <span className="mono" style={{ marginLeft: 'auto', fontSize: '0.72rem', color: 'var(--text-3)' }}>
+                              score: {item.retrieval_score?.toFixed(3)}
+                            </span>
+                          </div>
+                          <div style={{ fontSize: '0.78rem', color: 'var(--text-2)' }}>{item.content}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div style={{ textAlign: 'center', padding: '60px 0', color: 'var(--text-3)' }}>
+                No trace data for this selection
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    // ================================================================
+    // MEMORY
+    // ================================================================
+    function MemoryPanel({ data }) {
+      const wm = data.experiments?.with_memory;
+      const stats = wm?.memory_final_stats;
+
+      const memTypes = [
+        { key: 'episodic_count', type: 'episodic', label: 'Episodic', desc: '"What happened"', color: 'var(--episodic)', icon: 'E' },
+        { key: 'semantic_count', type: 'semantic', label: 'Semantic', desc: '"What I know"', color: 'var(--semantic)', icon: 'S' },
+        { key: 'procedural_count', type: 'procedural', label: 'Procedural', desc: '"How to do things"', color: 'var(--procedural)', icon: 'P' },
+        { key: 'reflective_count', type: 'reflective', label: 'Reflective', desc: '"What I learned"', color: 'var(--reflective)', icon: 'R' },
+      ];
+
+      // Build memory growth data from traces
+      const growthData = useMemo(() => {
+        const traces = wm?.traces || [];
+        const sids = getSessionIds(data);
+        return sids.map(sid => {
+          const sessionTraces = traces.filter(t => t.session === sid);
+          const memCount = sessionTraces.reduce((max, t) => {
+            const items = t.prompt?.memory_items?.length || 0;
+            return Math.max(max, items);
+          }, 0);
+          return { session: `S${sid}`, name: data.session_titles?.[String(sid)] || '', memories_used: memCount, category: getCategory(sid).id };
+        });
+      }, [wm, data]);
+
+      if (!stats) {
+        return (
+          <div className="card" style={{ textAlign: 'center', padding: 60 }}>
+            <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-0)', marginBottom: 8 }}>Memory Growth</div>
+            <div style={{ color: 'var(--text-3)' }}>No memory data. Run the full-memory experiment first.</div>
+          </div>
+        );
+      }
+
+      return (
+        <div className="flex flex-col gap-6">
+          {/* Total */}
+          <div className="card glow-accent" style={{ textAlign: 'center', borderColor: 'rgba(124,92,252,0.2)' }}>
+            <div className="mono" style={{ fontSize: '3.5rem', fontWeight: 900, color: 'var(--accent)', lineHeight: 1 }}>
+              {stats.total_memories}
+            </div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-2)', marginTop: 8 }}>Total Memories Accumulated Across All Sessions</div>
+          </div>
+
+          {/* Type cards */}
+          <div className="grid-4">
+            {memTypes.map(mt => {
+              const count = stats[mt.key] || 0;
+              const pct = stats.total_memories > 0 ? Math.round((count / stats.total_memories) * 100) : 0;
+              return (
+                <div key={mt.key} className={`mem-type-card ${mt.type}`}>
+                  <div style={{
+                    width: 40, height: 40, borderRadius: 10,
+                    background: `${mt.color}22`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    margin: '0 auto 12px',
+                    fontWeight: 800, fontSize: '1rem', color: mt.color,
+                  }}>
+                    {mt.icon}
+                  </div>
+                  <div className="mono" style={{ fontSize: '2.2rem', fontWeight: 800, color: mt.color, lineHeight: 1 }}>
+                    {count}
+                  </div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-0)', marginTop: 8 }}>{mt.label}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-3)', marginTop: 2 }}>{mt.desc}</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-3)', marginTop: 8 }}>{pct}% of total</div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Memory distribution chart */}
+          <div className="card">
+            <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-0)', marginBottom: 4 }}>Memory Distribution</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-3)', marginBottom: 20 }}>
+              Breakdown by type. Procedural memories dominate because the agent learns many strategies.
+            </div>
+            <ResponsiveContainer width="100%" height={60}>
+              <BarChart data={[{
+                episodic: stats.episodic_count || 0,
+                semantic: stats.semantic_count || 0,
+                procedural: stats.procedural_count || 0,
+                reflective: stats.reflective_count || 0,
+              }]} layout="vertical" barSize={32}>
+                <XAxis type="number" hide />
+                <YAxis type="category" dataKey="name" hide />
+                <Bar dataKey="episodic" name="Episodic" stackId="a" fill="var(--episodic)" radius={[6, 0, 0, 6]} />
+                <Bar dataKey="semantic" name="Semantic" stackId="a" fill="var(--semantic)" />
+                <Bar dataKey="procedural" name="Procedural" stackId="a" fill="var(--procedural)" />
+                <Bar dataKey="reflective" name="Reflective" stackId="a" fill="var(--reflective)" radius={[0, 6, 6, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+            <div className="flex items-center justify-center gap-4 mt-4" style={{ fontSize: '0.78rem' }}>
+              {memTypes.map(mt => (
+                <div key={mt.key} className="flex items-center gap-2">
+                  <div style={{ width: 10, height: 10, borderRadius: 3, background: mt.color }} />
+                  <span style={{ color: 'var(--text-2)' }}>{mt.label}: {stats[mt.key] || 0}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // ================================================================
+    // A/B DIFF
+    // ================================================================
+    function DiffPanel({ data, session, setSession }) {
+      const wm = data.experiments?.with_memory;
+      const nm = data.experiments?.without_memory;
+
+      const wmResult = wm?.session_results?.[session] || wm?.session_results?.[String(session)];
+      const nmResult = nm?.session_results?.[session] || nm?.session_results?.[String(session)];
+
+      const wmScore = wmResult?.quality_score ?? 'N/A';
+      const nmScore = nmResult?.quality_score ?? 'N/A';
+      const wmSteps = wm?.steps_per_session?.[session] ?? wm?.steps_per_session?.[String(session)] ?? '?';
+      const nmSteps = nm?.steps_per_session?.[session] ?? nm?.steps_per_session?.[String(session)] ?? '?';
+
+      return (
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-0)' }}>A/B Comparison</div>
+              <div style={{ fontSize: '0.82rem', color: 'var(--text-3)', marginTop: 2 }}>
+                Side-by-side output comparison. Follow-up and synthesis sessions show the biggest differences.
+              </div>
+            </div>
+            <select className="select" value={session} onChange={e => setSession(Number(e.target.value))}>
+              {getSessionIds(data).map(s => (
+                <option key={s} value={s}>S{s}: {data.session_titles?.[String(s)]}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Score comparison */}
+          <div className="grid-2">
+            <div style={{ padding: '16px 20px', background: 'var(--bg-2)', border: '1px solid var(--border)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 16 }}>
+              <div style={{ width: 8, height: 40, borderRadius: 4, background: COLORS.without_memory }} />
+              <div>
+                <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-3)' }}>Without Memory</div>
+                <div className="flex items-center gap-3 mt-1">
+                  <span className="mono" style={{ fontSize: '1.5rem', fontWeight: 800, color: nmScore >= 8 ? 'var(--green)' : nmScore >= 5 ? 'var(--orange)' : 'var(--red)' }}>
+                    {nmScore}/10
+                  </span>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-3)' }}>{nmSteps} steps</span>
+                </div>
+              </div>
+            </div>
+            <div style={{ padding: '16px 20px', background: 'var(--bg-2)', border: '1px solid rgba(124,92,252,0.3)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 16 }}>
+              <div style={{ width: 8, height: 40, borderRadius: 4, background: COLORS.with_memory }} />
+              <div>
+                <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-3)' }}>Full Memory</div>
+                <div className="flex items-center gap-3 mt-1">
+                  <span className="mono" style={{ fontSize: '1.5rem', fontWeight: 800, color: wmScore >= 8 ? 'var(--green)' : wmScore >= 5 ? 'var(--orange)' : 'var(--red)' }}>
+                    {wmScore}/10
+                  </span>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-3)' }}>{wmSteps} steps</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Side-by-side text */}
+          <div className="grid-2">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="badge" style={{ background: `${COLORS.without_memory}22`, color: COLORS.without_memory }}>Without Memory</span>
+                <span style={{ fontSize: '0.72rem', color: 'var(--text-3)' }}>{nmResult?.final_answer?.length || 0} chars</span>
+              </div>
+              <div className="diff-panel">
+                <pre>{nmResult?.final_answer || 'No output available.'}</pre>
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="badge badge-accent">Full Memory</span>
+                <span style={{ fontSize: '0.72rem', color: 'var(--text-3)' }}>{wmResult?.final_answer?.length || 0} chars</span>
+              </div>
+              <div className="diff-panel" style={{ borderColor: 'rgba(124,92,252,0.2)' }}>
+                <pre>{wmResult?.final_answer || 'No output available.'}</pre>
+              </div>
+            </div>
+          </div>
+
+          {/* Criteria comparison */}
+          <div className="grid-2">
+            {[['without_memory', nmResult], ['with_memory', wmResult]].map(([expKey, result]) => (
+              <div key={expKey} className="card">
+                <div className="flex items-center gap-2 mb-4">
+                  <div style={{ width: 10, height: 10, borderRadius: '50%', background: COLORS[expKey] }} />
+                  <span style={{ fontWeight: 600, fontSize: '0.85rem', color: 'var(--text-0)' }}>{LABELS[expKey]} Criteria</span>
+                </div>
+                {result?.quality_details ? Object.entries(result.quality_details).map(([cname, c]) => (
+                  <div key={cname} className="criteria-row">
+                    <div className={`criteria-icon ${c.met ? 'criteria-pass' : 'criteria-fail'}`}>
+                      {c.met ? '\u2713' : '\u2717'}
+                    </div>
+                    <span style={{ color: c.met ? 'var(--text-1)' : 'var(--text-3)' }}>{c.description}</span>
+                  </div>
+                )) : <div style={{ color: 'var(--text-3)', fontSize: '0.82rem' }}>No criteria data</div>}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // ================================================================
+    // MOUNT
+    // ================================================================
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

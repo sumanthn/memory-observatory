@@ -1,0 +1,1143 @@
+{
+  "companies": {
+    "TechCorp": {
+      "full_name": "TechCorp Inc.",
+      "sector": "Technology",
+      "ticker": "TCORP",
+      "fiscal_year": "FY2025",
+      "financials": {
+        "revenue": 4200000000,
+        "revenue_formatted": "$4.2B",
+        "revenue_yoy_change": 3.1,
+        "net_income": 380000000,
+        "net_income_formatted": "$380M",
+        "total_debt": 2800000000,
+        "total_debt_formatted": "$2.8B",
+        "total_equity": 1550000000,
+        "total_equity_formatted": "$1.55B",
+        "debt_to_equity": 1.81,
+        "cash": 900000000,
+        "cash_formatted": "$900M",
+        "operating_margin": 18.2,
+        "shares_outstanding": 245000000,
+        "shares_outstanding_formatted": "245M",
+        "eps": 1.55,
+        "pe_ratio": 22.4,
+        "quarterly_revenue": {
+          "Q1_2025": {
+            "revenue": 980000000,
+            "revenue_formatted": "$980M",
+            "estimate": 975000000,
+            "beat_miss": "beat",
+            "surprise_pct": 0.5
+          },
+          "Q2_2025": {
+            "revenue": 1050000000,
+            "revenue_formatted": "$1.05B",
+            "estimate": 1020000000,
+            "beat_miss": "beat",
+            "surprise_pct": 2.9
+          },
+          "Q3_2025": {
+            "revenue": 1020000000,
+            "revenue_formatted": "$1.02B",
+            "estimate": 1110000000,
+            "beat_miss": "miss",
+            "surprise_pct": -8.1
+          },
+          "Q4_2025": {
+            "revenue": 1150000000,
+            "revenue_formatted": "$1.15B",
+            "estimate": 1130000000,
+            "beat_miss": "beat",
+            "surprise_pct": 1.8
+          }
+        },
+        "inventory_days": null,
+        "r_and_d_spend": 520000000,
+        "r_and_d_pct_revenue": 12.4
+      },
+      "red_flags": [
+        "CEO changed 6 months ago — previous CEO departed citing 'personal reasons' after 12-year tenure",
+        "Missed Q3 2025 earnings estimate by 8.1% — largest miss in 5 years",
+        "Debt-to-equity ratio of 1.81 is elevated for the technology sector (peer median: 0.9)",
+        "Debt covenant violation: 10-K footnote reveals maximum leverage ratio of 1.5x was breached in Q3 2025"
+      ],
+      "sec_filings": {
+        "10-K": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS\n\nFor the fiscal year ended December 31, 2025, TechCorp Inc. reported total revenue of $4.2 billion, representing a year-over-year increase of 3.1%. The increase was primarily driven by continued growth in our cloud services segment, which grew 12% year-over-year, partially offset by a 6% decline in legacy hardware licensing revenue. Gross margin expanded 40 basis points to 62.3%, reflecting improved product mix and operational efficiencies in our manufacturing operations.\n\nDuring the fiscal year, the Company completed a leadership transition. Effective July 1, 2025, Ms. Sarah Chen was appointed Chief Executive Officer following the departure of Mr. Robert Martinez, who served as CEO since 2013. Mr. Martinez departed to pursue personal interests. The Board of Directors conducted an extensive search and determined that Ms. Chen's experience in enterprise cloud solutions positioned the Company well for its strategic transformation. Transition costs of approximately $18 million were recorded in Q3 2025, including executive severance and consulting arrangements.\n\nNote 14 — Debt Covenants and Credit Facilities: The Company maintains a $3.5 billion revolving credit facility with a syndicate of lenders. Under the terms of the amended credit agreement dated March 2023, the Company is required to maintain a maximum consolidated leverage ratio of 1.5x EBITDA. As of September 30, 2025, the Company's leverage ratio was approximately 1.83x, which constituted a technical breach of the covenant. The Company obtained a temporary waiver from the lending syndicate through March 31, 2026, and is in active discussions regarding a permanent amendment to the covenant threshold. No acceleration of outstanding borrowings has occurred as a result of this breach. Management believes the waiver and anticipated amendment provide adequate assurance of continued access to the credit facility.",
+        "10-Q": "For the quarter ended September 30, 2025, TechCorp Inc. reported revenue of $1.02 billion, below the consensus estimate of $1.11 billion. The shortfall was primarily attributable to delayed enterprise contract renewals as customers evaluated the Company's strategic direction following the CEO transition. Additionally, a supply chain disruption affecting our hardware segment resulted in approximately $35 million in deferred revenue recognition. Operating expenses increased 7% quarter-over-quarter due to leadership transition costs and accelerated investment in AI capabilities. The Company reaffirms its full-year guidance range of $4.1 billion to $4.3 billion in revenue."
+      },
+      "news": [
+        {
+          "headline": "TechCorp Names Sarah Chen as New CEO; Martinez Departs After 12-Year Tenure",
+          "date": "2025-07-01",
+          "source": "Reuters",
+          "summary": "TechCorp Inc. announced the appointment of Sarah Chen as Chief Executive Officer, effective immediately. Former CEO Robert Martinez departed the company citing personal reasons. Chen, previously the company's SVP of Cloud Services, inherits a company navigating its transition from legacy hardware to cloud and AI solutions."
+        },
+        {
+          "headline": "TechCorp Misses Q3 Earnings, Shares Fall 12%",
+          "date": "2025-10-28",
+          "source": "Bloomberg",
+          "summary": "TechCorp Inc. reported third-quarter revenue of $1.02 billion, missing analyst estimates of $1.11 billion by 8.1%. The company cited delayed enterprise renewals and supply chain disruptions. Shares fell 12% in after-hours trading, marking the largest single-day decline since 2020."
+        },
+        {
+          "headline": "TechCorp Unveils 'Nova AI' Enterprise Platform at Annual Conference",
+          "date": "2025-09-15",
+          "source": "TechCrunch",
+          "summary": "TechCorp's new CEO Sarah Chen used the company's annual developer conference to unveil Nova AI, an enterprise artificial intelligence platform. The company is betting on AI-powered solutions to offset declining hardware revenue. Analysts noted the product looks competitive but expressed concerns about execution risk."
+        },
+        {
+          "headline": "Morgan Stanley Downgrades TechCorp to 'Equal Weight' on Leverage Concerns",
+          "date": "2025-11-15",
+          "source": "MarketWatch",
+          "summary": "Morgan Stanley analyst David Kim downgraded TechCorp to 'Equal Weight' from 'Overweight,' citing elevated leverage and uncertainty around the leadership transition. Kim noted that the company's debt-to-equity ratio of 1.8x significantly exceeds the technology sector median and raised concerns about upcoming debt maturities."
+        },
+        {
+          "headline": "TechCorp Partners with Major Cloud Provider for AI Distribution",
+          "date": "2025-12-10",
+          "source": "Wall Street Journal",
+          "summary": "TechCorp Inc. announced a strategic partnership with a major cloud provider to distribute its Nova AI platform. The deal includes $200 million in committed minimum revenue over three years. Analysts viewed the partnership positively, calling it a validation of TechCorp's AI strategy under new leadership."
+        }
+      ]
+    },
+    "HealthCo": {
+      "full_name": "HealthCo Ltd.",
+      "sector": "Healthcare / Pharmaceuticals",
+      "ticker": "HLCO",
+      "fiscal_year": "FY2025",
+      "financials": {
+        "revenue": 2100000000,
+        "revenue_formatted": "$2.1B",
+        "revenue_yoy_change": -5.2,
+        "net_income": 95000000,
+        "net_income_formatted": "$95M",
+        "total_debt": 800000000,
+        "total_debt_formatted": "$800M",
+        "total_equity": 1200000000,
+        "total_equity_formatted": "$1.2B",
+        "debt_to_equity": 0.67,
+        "cash": 450000000,
+        "cash_formatted": "$450M",
+        "operating_margin": 11.8,
+        "shares_outstanding": 180000000,
+        "shares_outstanding_formatted": "180M",
+        "eps": 0.53,
+        "pe_ratio": 34.2,
+        "quarterly_revenue": {
+          "Q1_2025": {
+            "revenue": 560000000,
+            "revenue_formatted": "$560M",
+            "estimate": 570000000,
+            "beat_miss": "miss",
+            "surprise_pct": -1.8
+          },
+          "Q2_2025": {
+            "revenue": 540000000,
+            "revenue_formatted": "$540M",
+            "estimate": 555000000,
+            "beat_miss": "miss",
+            "surprise_pct": -2.7
+          },
+          "Q3_2025": {
+            "revenue": 520000000,
+            "revenue_formatted": "$520M",
+            "estimate": 545000000,
+            "beat_miss": "miss",
+            "surprise_pct": -4.6
+          },
+          "Q4_2025": {
+            "revenue": 480000000,
+            "revenue_formatted": "$480M",
+            "estimate": 530000000,
+            "beat_miss": "miss",
+            "surprise_pct": -9.4
+          }
+        },
+        "inventory_days": null,
+        "r_and_d_spend": 340000000,
+        "r_and_d_pct_revenue": 16.2
+      },
+      "red_flags": [
+        "Revenue declining for 3 consecutive quarters (Q2: -3.6% QoQ, Q3: -3.7% QoQ, Q4: -7.7% QoQ)",
+        "R&D spend at 16.2% of revenue — high even for pharma, with uncertain ROI",
+        "FDA approval pending for Nexaviron (lead drug candidate) — binary risk event",
+        "Related-party transaction: $42M consulting contract with Meridian Advisory, whose managing partner is board member Dr. James Whitfield"
+      ],
+      "sec_filings": {
+        "10-K": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS\n\nHealthCo Ltd. reported fiscal year 2025 revenue of $2.1 billion, a decrease of 5.2% compared to the prior year. The decline was driven by continued erosion in our legacy therapeutics portfolio, particularly the Cardiovex franchise which faces increasing generic competition. Revenue from the Cardiovex family of products declined 22% year-over-year to $340 million. The Company has invested heavily in its next-generation pipeline, with R&D expenditures of $340 million (16.2% of revenue) during the fiscal year, focused primarily on Nexaviron, our novel immunotherapy candidate currently in Phase III clinical trials.\n\nThe Company's most significant near-term catalyst is the anticipated FDA decision on the Biologics License Application for Nexaviron, expected in Q2 2026. If approved, Nexaviron addresses a $4.8 billion market opportunity in autoimmune disorders. Phase III trial data demonstrated a 34% improvement in primary endpoints versus placebo (p<0.001). However, the FDA has requested additional safety data regarding hepatotoxicity signals observed in 2.3% of trial participants, and the outcome of the regulatory review remains uncertain.\n\nNote 18 — Related Party Transactions: During fiscal year 2025, the Company entered into a consulting agreement with Meridian Advisory Partners LLC for strategic advisory services related to commercial launch planning for Nexaviron. Total payments under this agreement were $42 million. Meridian Advisory Partners is managed by Dr. James Whitfield, who has served as an independent director on the Company's Board of Directors since 2019. Dr. Whitfield recused himself from the Board vote approving this engagement. The Audit Committee reviewed the terms of the agreement and determined them to be on arms-length terms consistent with market rates for comparable services. However, certain shareholders have raised questions regarding the scope and pricing of the engagement relative to the services delivered.",
+        "10-Q": "For the quarter ended December 31, 2025, HealthCo Ltd. reported revenue of $480 million, a decrease of 7.7% from the prior quarter and 12.3% below the year-ago quarter. The accelerating decline reflects both continued generic erosion in the Cardiovex franchise and the deferral of purchasing decisions by hospital systems awaiting clarity on the Nexaviron approval timeline. Operating margin contracted to 8.9% in the quarter from 11.8% for the full year, as the Company maintained R&D spending levels despite lower revenue. Cash and cash equivalents stood at $450 million, down from $580 million at the start of the fiscal year."
+      },
+      "news": [
+        {
+          "headline": "HealthCo Reports Fourth Straight Revenue Miss as Legacy Drug Sales Erode",
+          "date": "2026-01-28",
+          "source": "Reuters",
+          "summary": "HealthCo Ltd. missed revenue expectations for the fourth consecutive quarter, reporting $480 million versus the $530 million consensus. CEO Margaret Lawson pointed to accelerating generic competition in the company's legacy Cardiovex franchise and emphasized the upcoming FDA decision on Nexaviron as a 'transformative moment' for the company."
+        },
+        {
+          "headline": "FDA Requests Additional Safety Data on HealthCo's Lead Drug Candidate",
+          "date": "2025-11-05",
+          "source": "STAT News",
+          "summary": "The FDA has issued a Complete Response Letter requesting additional hepatotoxicity data for HealthCo's Nexaviron, the company's most important pipeline drug. The request could delay the PDUFA date by 3-6 months. Shares fell 8% on the news, reflecting investor concern about the already-struggling company's dependence on this single catalyst."
+        },
+        {
+          "headline": "Activist Investor Calls for Review of HealthCo Board Member's Consulting Deal",
+          "date": "2025-12-18",
+          "source": "Bloomberg",
+          "summary": "Prescott Capital, which holds a 4.2% stake in HealthCo, sent a letter to the board questioning a $42 million consulting agreement between the company and a firm managed by board member Dr. James Whitfield. Prescott called the arrangement 'unusual in both scope and magnitude' and requested an independent review."
+        },
+        {
+          "headline": "HealthCo Announces $150M Cost Reduction Program Amid Revenue Decline",
+          "date": "2025-10-15",
+          "source": "MarketWatch",
+          "summary": "HealthCo Ltd. announced a restructuring program targeting $150 million in annual cost savings, including an estimated 800 job cuts. The company said the program will 'right-size operations while preserving critical R&D investments.' Analysts noted the cuts are necessary but may not be sufficient if Nexaviron fails to gain FDA approval."
+        },
+        {
+          "headline": "HealthCo's Nexaviron Shows Strong Phase III Data in Autoimmune Disorders",
+          "date": "2025-06-20",
+          "source": "BioPharma Dive",
+          "summary": "HealthCo reported positive Phase III results for Nexaviron in autoimmune disorders, showing a 34% improvement in primary endpoints versus placebo. The data was well-received by analysts, though concerns remain about hepatotoxicity signals observed in a small subset of patients. If approved, Nexaviron could generate peak sales of $1.5-2.0 billion annually."
+        }
+      ]
+    },
+    "RetailMax": {
+      "full_name": "RetailMax Corp.",
+      "sector": "Retail",
+      "ticker": "RMAX",
+      "fiscal_year": "FY2025",
+      "financials": {
+        "revenue": 6800000000,
+        "revenue_formatted": "$6.8B",
+        "revenue_yoy_change": 8.0,
+        "net_income": 210000000,
+        "net_income_formatted": "$210M",
+        "total_debt": 3200000000,
+        "total_debt_formatted": "$3.2B",
+        "total_equity": 2100000000,
+        "total_equity_formatted": "$2.1B",
+        "debt_to_equity": 1.52,
+        "cash": 380000000,
+        "cash_formatted": "$380M",
+        "operating_margin": 5.1,
+        "operating_margin_prior_year": 7.2,
+        "shares_outstanding": 320000000,
+        "shares_outstanding_formatted": "320M",
+        "eps": 0.66,
+        "pe_ratio": 18.7,
+        "quarterly_revenue": {
+          "Q1_2025": {
+            "revenue": 1550000000,
+            "revenue_formatted": "$1.55B",
+            "estimate": 1540000000,
+            "beat_miss": "beat",
+            "surprise_pct": 0.6
+          },
+          "Q2_2025": {
+            "revenue": 1650000000,
+            "revenue_formatted": "$1.65B",
+            "estimate": 1620000000,
+            "beat_miss": "beat",
+            "surprise_pct": 1.9
+          },
+          "Q3_2025": {
+            "revenue": 1750000000,
+            "revenue_formatted": "$1.75B",
+            "estimate": 1700000000,
+            "beat_miss": "beat",
+            "surprise_pct": 2.9
+          },
+          "Q4_2025": {
+            "revenue": 1850000000,
+            "revenue_formatted": "$1.85B",
+            "estimate": 1830000000,
+            "beat_miss": "beat",
+            "surprise_pct": 1.1
+          }
+        },
+        "inventory_days": {
+          "Q1_2025": 60,
+          "Q2_2025": 75,
+          "Q3_2025": 85,
+          "Q4_2025": 95
+        },
+        "r_and_d_spend": null,
+        "r_and_d_pct_revenue": null,
+        "new_stores_opened": 40,
+        "total_store_count": 892,
+        "same_store_sales_growth": 1.2
+      },
+      "red_flags": [
+        "Inventory days increasing rapidly: 60 → 75 → 85 → 95 days over 4 quarters — classic sign of weakening demand or over-ordering",
+        "Operating margin compressed from 7.2% to 5.1% year-over-year — 210 basis point decline",
+        "40 new stores opened funded by debt — aggressive expansion with thinning margins",
+        "Same-store sales growth of only 1.2% despite 8% revenue growth — growth is debt-funded store openings, not organic demand",
+        "Debt-to-equity of 1.52 is elevated for the retail sector (peer median: 0.8)"
+      ],
+      "sec_filings": {
+        "10-K": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS\n\nRetailMax Corp. reported record fiscal year 2025 revenue of $6.8 billion, an increase of 8.0% compared to the prior year. Growth was driven by the Company's aggressive expansion strategy, with 40 new store openings during the fiscal year bringing the total store count to 892. The Company invested approximately $1.2 billion in new store buildouts, leasehold improvements, and supply chain infrastructure, primarily funded through the Company's credit facilities and a $500 million senior note issuance in Q2 2025. Same-store sales increased 1.2% for the full year, reflecting modest organic growth in existing locations.\n\nOperating margin for the fiscal year was 5.1%, compared to 7.2% in the prior year. The contraction was attributable to several factors: pre-opening costs for new stores, increased promotional activity to drive traffic in new markets, and higher supply chain costs. The Company expects margin pressure to persist through the first half of FY2026 as newly opened stores mature toward profitability targets. Management projects stabilization of operating margins in the 6.0-6.5% range by Q3 2026.\n\nNote 9 — Inventory: Total inventory at December 31, 2025 was $1.78 billion, representing approximately 95 days of cost of goods sold, compared to 60 days at the beginning of the fiscal year. The increase in inventory levels was driven by pre-stocking of new store locations and strategic purchasing ahead of anticipated supply chain disruptions. Management believes current inventory levels are appropriate given the expanded store base, although the Company has initiated targeted clearance programs in select categories where sell-through rates have fallen below expectations. Approximately $280 million of inventory is classified as seasonal merchandise that management expects to liquidate at reduced margins during Q1 2026.",
+        "10-Q": "For the quarter ended December 31, 2025, RetailMax Corp. reported revenue of $1.85 billion, an increase of 6.1% from the year-ago period. The Company opened 12 new stores during the quarter. Operating margin was 4.3% for the quarter, down from 6.8% in the prior-year quarter. Inventory days outstanding increased to 95 days from 85 days in the prior quarter. The Company drew an additional $200 million on its revolving credit facility during the quarter, bringing total outstanding revolver borrowings to $1.1 billion. Total liquidity, including cash and available credit facility capacity, was $1.28 billion at quarter end."
+      },
+      "news": [
+        {
+          "headline": "RetailMax Posts Record Revenue on Aggressive Store Expansion",
+          "date": "2026-01-30",
+          "source": "Reuters",
+          "summary": "RetailMax Corp. reported record annual revenue of $6.8 billion, up 8% year-over-year, driven by 40 new store openings. However, operating margins declined to 5.1% from 7.2%, and same-store sales growth of just 1.2% raised questions about the sustainability of the company's expansion strategy."
+        },
+        {
+          "headline": "Analysts Warn RetailMax Inventory Buildup Could Signal Demand Weakness",
+          "date": "2025-11-20",
+          "source": "Bloomberg",
+          "summary": "Several retail analysts flagged RetailMax's rapidly increasing inventory levels as a potential warning sign. Inventory days have risen from 60 to 95 over the past year, significantly outpacing revenue growth. 'This pattern often precedes margin-destroying clearance activity,' noted Goldman Sachs analyst Jennifer Wu."
+        },
+        {
+          "headline": "RetailMax Opens 40th New Store This Year, Plans 50 More in FY2026",
+          "date": "2025-12-05",
+          "source": "Retail Dive",
+          "summary": "RetailMax celebrated the opening of its 40th new store of the year, a flagship location in Austin, Texas. CEO Michael Torres announced plans for 50 additional stores in FY2026, calling the expansion 'the fastest path to market leadership.' The announcement was met with mixed reactions from investors concerned about the debt-funded pace of growth."
+        },
+        {
+          "headline": "RetailMax Issues $500M in Senior Notes to Fund Expansion",
+          "date": "2025-06-15",
+          "source": "Wall Street Journal",
+          "summary": "RetailMax Corp. issued $500 million in senior unsecured notes with a 6.75% coupon, the proceeds of which will fund new store openings and supply chain investments. The relatively high coupon rate reflects investor concerns about the company's rising leverage and margin trends."
+        },
+        {
+          "headline": "Consumer Spending Slowdown Hits Mid-Market Retailers; RetailMax Shares Dip",
+          "date": "2026-02-10",
+          "source": "CNBC",
+          "summary": "Shares of mid-market retailers including RetailMax fell 5-8% as new consumer confidence data showed spending intentions at a 2-year low. Analysts noted that RetailMax's aggressive expansion makes it particularly vulnerable to a consumer downturn given its elevated debt levels and inventory buildup."
+        }
+      ]
+    },
+    "EnergyX": {
+      "full_name": "EnergyX Corp.",
+      "sector": "Energy / Oil & Gas",
+      "ticker": "ENGX",
+      "fiscal_year": "FY2025",
+      "financials": {
+        "revenue": 8900000000,
+        "revenue_formatted": "$8.9B",
+        "revenue_yoy_change": -12.4,
+        "net_income": 620000000,
+        "net_income_formatted": "$620M",
+        "total_debt": 5100000000,
+        "total_debt_formatted": "$5.1B",
+        "total_equity": 3800000000,
+        "total_equity_formatted": "$3.8B",
+        "debt_to_equity": 1.34,
+        "cash": 720000000,
+        "cash_formatted": "$720M",
+        "operating_margin": 14.2,
+        "operating_margin_prior_year": 22.1,
+        "shares_outstanding": 410000000,
+        "shares_outstanding_formatted": "410M",
+        "eps": 1.51,
+        "pe_ratio": 11.3,
+        "quarterly_revenue": {
+          "Q1_2025": {
+            "revenue": 2400000000,
+            "revenue_formatted": "$2.4B",
+            "estimate": 2500000000,
+            "beat_miss": "miss",
+            "surprise_pct": -4.0
+          },
+          "Q2_2025": {
+            "revenue": 2300000000,
+            "revenue_formatted": "$2.3B",
+            "estimate": 2350000000,
+            "beat_miss": "miss",
+            "surprise_pct": -2.1
+          },
+          "Q3_2025": {
+            "revenue": 2100000000,
+            "revenue_formatted": "$2.1B",
+            "estimate": 2250000000,
+            "beat_miss": "miss",
+            "surprise_pct": -6.7
+          },
+          "Q4_2025": {
+            "revenue": 2100000000,
+            "revenue_formatted": "$2.1B",
+            "estimate": 2000000000,
+            "beat_miss": "beat",
+            "surprise_pct": 5.0
+          }
+        },
+        "inventory_days": null,
+        "r_and_d_spend": 180000000,
+        "r_and_d_pct_revenue": 2.0,
+        "proven_reserves_boe": "1.2B BOE",
+        "reserve_replacement_ratio": 0.68
+      },
+      "red_flags": [
+        "Reserve replacement ratio of 0.68x — depleting reserves faster than replacing them",
+        "Revenue declined 12.4% YoY as oil prices dropped from $82 to $68/bbl average",
+        "Operating margin compressed from 22.1% to 14.2% — 790 basis point decline",
+        "Debt covenant requires minimum interest coverage of 3.0x; current ratio is 3.2x — only $45M EBITDA cushion before breach"
+      ],
+      "sec_filings": {
+        "10-K": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS\n\nFor the fiscal year ended December 31, 2025, EnergyX Corp. reported total revenue of $8.9 billion, a decrease of 12.4% compared to the prior year. The decline was primarily driven by a sustained reduction in realized oil prices, which averaged $68 per barrel during the fiscal year compared to $82 per barrel in the prior year, a decline of approximately 17%. Natural gas revenues were similarly affected, with average realized prices declining 14% year-over-year. Production volumes remained relatively stable at 285,000 barrels of oil equivalent per day, a decrease of 2.1% from the prior year. Operating margin contracted from 22.1% to 14.2%, reflecting the disproportionate impact of commodity price declines on our cost structure, as approximately 65% of our operating costs are fixed or semi-fixed in nature.\n\nThe Company continues to face challenges in its upstream reserve base. Proved reserves as of December 31, 2025 stood at 1.2 billion barrels of oil equivalent (BOE), reflecting a reserve replacement ratio of 0.68x for the fiscal year. The below-unity replacement ratio indicates that the Company is depleting its reserve base faster than it is discovering or acquiring new reserves. Management has identified several exploration prospects in the Permian Basin and offshore Gulf of Mexico that are expected to improve the replacement ratio in coming years, contingent upon capital allocation decisions and commodity price recovery.\n\nNote 12 — Debt Covenants and Credit Facilities: The Company maintains a $5.1 billion term loan facility and a $2.0 billion revolving credit facility with a syndicate of 14 lenders. Under the terms of the credit agreement, the Company is required to maintain a minimum interest coverage ratio of 3.0x (defined as EBITDA to interest expense). As of December 31, 2025, the Company's interest coverage ratio was approximately 3.2x, providing a cushion of approximately $45 million in EBITDA before a covenant breach would occur. Management notes that the interest coverage ratio has declined from 5.1x at the end of the prior fiscal year due to lower commodity prices and the resulting decline in EBITDA. Should average realized oil prices remain below $70 per barrel through the first quarter of 2026, the Company projects the interest coverage ratio could decline to approximately 2.8x, which would constitute a breach of the covenant. The Company is engaged in preliminary discussions with its lending syndicate regarding a potential amendment to the coverage threshold.\n\nNote 14 — Oil and Gas Reserves (Supplemental): Proved developed reserves decreased 8.2% during the fiscal year to 820 million BOE. Proved undeveloped reserves were 380 million BOE. The reserve replacement ratio of 0.68x reflects 194 million BOE of additions against 285 million BOE of production and revisions. Extensions and discoveries contributed 142 million BOE, while improved recovery added 52 million BOE. Downward revisions of 93 million BOE were recorded, primarily related to economic limit adjustments driven by lower commodity price assumptions.",
+        "10-Q": "For the quarter ended December 31, 2025, EnergyX Corp. reported revenue of $2.1 billion, exceeding the consensus estimate of $2.0 billion by 5.0%. The revenue beat was primarily attributable to a late-quarter recovery in oil prices to approximately $72 per barrel, combined with higher-than-expected natural gas volumes. Despite the Q4 beat, full-year revenue of $8.9 billion declined 12.4% year-over-year. The Company estimates that every $1 per barrel change in average realized oil prices impacts annual revenue by approximately $104 million and EBITDA by approximately $78 million. Management reiterated its commitment to maintaining investment-grade credit metrics and noted that capital expenditure reductions of approximately $300 million have been identified for FY2026 to preserve liquidity."
+      },
+      "news": [
+        {
+          "headline": "Oil Price Decline Hits EnergyX Revenue; Full-Year Sales Drop 12.4%",
+          "date": "2026-01-25",
+          "source": "Reuters",
+          "summary": "EnergyX Corp. reported full-year revenue of $8.9 billion, down 12.4% year-over-year as average realized oil prices fell from $82 to $68 per barrel. CEO James Harrington acknowledged the challenging commodity environment and outlined plans to reduce capital expenditures by $300 million in FY2026 to protect margins and liquidity."
+        },
+        {
+          "headline": "Analysts Flag EnergyX Reserve Depletion as Long-Term Concern",
+          "date": "2025-11-12",
+          "source": "Bloomberg",
+          "summary": "Energy sector analysts raised concerns about EnergyX's reserve replacement ratio of 0.68x, noting the company is depleting its proved reserves significantly faster than it is replacing them. 'At this rate, EnergyX faces a strategic challenge within 5-7 years unless exploration success or acquisitions materially improve the replacement trajectory,' wrote Barclays analyst Sarah Thornton."
+        },
+        {
+          "headline": "EnergyX Announces $300M Cost-Cutting Program as Margins Compress",
+          "date": "2025-12-02",
+          "source": "Wall Street Journal",
+          "summary": "EnergyX Corp. unveiled a $300 million cost reduction initiative targeting operational efficiencies and deferred exploration spending. The program includes a 15% reduction in drilling activity and consolidation of regional offices. Analysts noted the cuts are necessary given the 790 basis point decline in operating margin but warned they could further erode the company's reserve base."
+        },
+        {
+          "headline": "EnergyX Beats Q4 Estimates on Late Oil Price Recovery",
+          "date": "2026-01-28",
+          "source": "MarketWatch",
+          "summary": "EnergyX Corp. reported Q4 revenue of $2.1 billion, beating the consensus estimate of $2.0 billion by 5%. The beat was driven by a late-quarter recovery in oil prices to $72 per barrel. Despite the positive quarter, full-year results remain well below prior-year levels, and management cautioned that near-term commodity volatility remains a significant uncertainty."
+        },
+        {
+          "headline": "J.P. Morgan Downgrades EnergyX on Debt Covenant Risk",
+          "date": "2026-02-05",
+          "source": "CNBC",
+          "summary": "J.P. Morgan analyst Mark Rivera downgraded EnergyX to 'Underweight' from 'Neutral,' citing the company's thin $45 million EBITDA cushion above its debt covenant threshold. Rivera noted that if oil prices remain below $70 per barrel through Q1 2026, a covenant breach is likely. 'The company has very little room for error,' he wrote in a note to clients."
+        }
+      ]
+    },
+    "BankFirst": {
+      "full_name": "BankFirst Financial Group",
+      "sector": "Regional Banking",
+      "ticker": "BKFG",
+      "fiscal_year": "FY2025",
+      "financials": {
+        "revenue": 1800000000,
+        "revenue_formatted": "$1.8B",
+        "revenue_yoy_change": -3.8,
+        "net_income": 245000000,
+        "net_income_formatted": "$245M",
+        "total_debt": 890000000,
+        "total_debt_formatted": "$890M",
+        "total_equity": 2400000000,
+        "total_equity_formatted": "$2.4B",
+        "debt_to_equity": 0.37,
+        "cash": 3200000000,
+        "cash_formatted": "$3.2B",
+        "operating_margin": 28.5,
+        "shares_outstanding": 165000000,
+        "shares_outstanding_formatted": "165M",
+        "eps": 1.48,
+        "pe_ratio": 9.2,
+        "quarterly_revenue": {
+          "Q1_2025": {
+            "revenue": 470000000,
+            "revenue_formatted": "$470M",
+            "estimate": 480000000,
+            "beat_miss": "miss",
+            "surprise_pct": -2.1
+          },
+          "Q2_2025": {
+            "revenue": 460000000,
+            "revenue_formatted": "$460M",
+            "estimate": 465000000,
+            "beat_miss": "miss",
+            "surprise_pct": -1.1
+          },
+          "Q3_2025": {
+            "revenue": 445000000,
+            "revenue_formatted": "$445M",
+            "estimate": 455000000,
+            "beat_miss": "miss",
+            "surprise_pct": -2.2
+          },
+          "Q4_2025": {
+            "revenue": 425000000,
+            "revenue_formatted": "$425M",
+            "estimate": 440000000,
+            "beat_miss": "miss",
+            "surprise_pct": -3.4
+          }
+        },
+        "total_assets": "$28.4B",
+        "total_loans": "$18.2B",
+        "npl_ratio": 3.8,
+        "loan_loss_provision": "$285M",
+        "cre_exposure_pct": 34.2,
+        "tier1_capital": 10.8
+      },
+      "red_flags": [
+        "NPL ratio of 3.8% — up from 1.9% one year ago, double the peer median of 1.8%",
+        "CRE exposure at 34.2% of loan book — concentrated in office and retail, both distressed sectors",
+        "Loan loss provisions increased 156% YoY to $285M — management expects further credit deterioration",
+        "Net interest margin compressed 45bps as funding costs outpaced asset yields"
+      ],
+      "sec_filings": {
+        "10-K": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS\n\nBankFirst Financial Group reported net interest income of $1.8 billion for fiscal year 2025, a decrease of 3.8% compared to the prior year. The decline was driven by a 45 basis point compression in net interest margin (NIM) to 2.85%, as the cost of deposits and wholesale funding increased more rapidly than the yield on earning assets. Total deposits declined 2.1% during the year to $22.8 billion, reflecting competitive pressures in the regional banking market and migration of customer balances to higher-yielding money market alternatives. The Company responded by raising deposit rates across its product suite, which contributed to the NIM compression.\n\nCredit quality deteriorated materially during fiscal year 2025. Non-performing loans increased to $692 million, representing 3.8% of total loans outstanding, compared to 1.9% at the end of the prior year. The increase was concentrated in the commercial real estate (CRE) portfolio, particularly office and retail properties experiencing elevated vacancy rates and declining valuations. The provision for credit losses was $285 million for the fiscal year, an increase of 156% from $111 million in the prior year, reflecting management's assessment of continued credit deterioration in the CRE portfolio and broader macroeconomic uncertainty.\n\nNote 7 — Credit Quality and Loan Portfolio: Total loans outstanding were $18.2 billion at December 31, 2025. CRE loans totaled $6.2 billion, representing 34.2% of the total loan portfolio. Of the CRE portfolio, $3.4 billion (55%) is secured by office properties and $1.8 billion (29%) by retail properties. The office loan portfolio has experienced significant stress, with average vacancy rates of 22% among the Company's office property borrowers. Notable exposures include a $180 million construction and permanent loan for Harmon Plaza, a mixed-use development in downtown Portland, Oregon. The anchor tenant at Harmon Plaza, representing 35% of the project's planned rental income, departed in October 2025, and the borrower has been unable to secure a replacement tenant. The loan was placed on non-accrual status in November 2025. Management is evaluating impairment and expects a specific reserve of $40-60 million may be required in Q1 2026. The allowance for credit losses was $485 million at year-end, representing 2.67% of total loans, which management believes is adequate but acknowledges may require additional provisioning.",
+        "10-Q": "For the quarter ended December 31, 2025, BankFirst Financial Group reported net interest income of $425 million, a decline of 4.5% from the prior quarter. Net interest margin compressed an additional 12 basis points to 2.73% during the quarter, as deposit repricing continued to outpace asset yield improvements. The provision for credit losses was $95 million for the quarter, an increase from $78 million in the prior quarter, driven primarily by additional reserves on CRE office loans. Non-performing loans increased to 3.8% of total loans from 3.4% at the end of the prior quarter. The Company's Tier 1 capital ratio was 10.8%, which remains above the well-capitalized threshold of 8.0% but has declined from 11.4% at the start of the fiscal year due to increased risk-weighted assets and provisioning charges."
+      },
+      "news": [
+        {
+          "headline": "BankFirst NPL Ratio Doubles to 3.8% as CRE Loans Sour",
+          "date": "2026-01-22",
+          "source": "Reuters",
+          "summary": "BankFirst Financial Group reported a sharp increase in non-performing loans, with the NPL ratio rising to 3.8% from 1.9% a year earlier. The deterioration was concentrated in the bank's commercial real estate portfolio, particularly office and retail properties. CEO Patricia Hammond called the credit cycle 'manageable' but acknowledged that further provisioning is likely in Q1 2026."
+        },
+        {
+          "headline": "Analysts Warn BankFirst CRE Office Exposure is 'Outsized Risk'",
+          "date": "2025-12-08",
+          "source": "Bloomberg",
+          "summary": "Banking analysts at Wells Fargo and UBS flagged BankFirst's 34.2% CRE exposure as significantly above the regional bank peer median of 22%. With $3.4 billion in office loans and average vacancy rates of 22% among its borrowers, analysts warned that credit losses could accelerate significantly if the office market does not stabilize."
+        },
+        {
+          "headline": "BankFirst Dividend Under Scrutiny as Provisions Surge 156%",
+          "date": "2025-11-18",
+          "source": "MarketWatch",
+          "summary": "BankFirst Financial Group's $285 million provision for credit losses — up 156% from the prior year — has raised questions about the sustainability of its $0.92 per share annual dividend. Several analysts noted that the dividend payout ratio has increased to 62% and could exceed 80% if provisions continue to rise at the current pace."
+        },
+        {
+          "headline": "Fed Stress Test Scenario Could Challenge BankFirst Capital Levels",
+          "date": "2026-02-01",
+          "source": "Wall Street Journal",
+          "summary": "The Federal Reserve's 2026 stress test scenarios, which include a severe CRE downturn with 40% office valuation declines, could pose challenges for regional banks with concentrated CRE exposure. Analysts identified BankFirst as one of the most exposed banks given its 34.2% CRE concentration and rapidly deteriorating credit metrics."
+        },
+        {
+          "headline": "BankFirst Reports Deposit Outflows of $1.2B in Q4 2025",
+          "date": "2026-01-15",
+          "source": "CNBC",
+          "summary": "BankFirst Financial Group experienced deposit outflows of $1.2 billion during Q4 2025, bringing full-year net deposit attrition to $2.8 billion. The outflows were attributed to competitive rate pressures and some customers' concerns about the bank's CRE exposure. Management stated it has ample liquidity through FHLB borrowing capacity and its cash position of $3.2 billion."
+        }
+      ]
+    },
+    "PropCore": {
+      "full_name": "PropCore REIT Inc.",
+      "sector": "Real Estate / REIT",
+      "ticker": "PCRE",
+      "fiscal_year": "FY2025",
+      "financials": {
+        "revenue": 1350000000,
+        "revenue_formatted": "$1.35B",
+        "revenue_yoy_change": 2.1,
+        "net_income": 165000000,
+        "net_income_formatted": "$165M",
+        "total_debt": 4800000000,
+        "total_debt_formatted": "$4.8B",
+        "total_equity": 2100000000,
+        "total_equity_formatted": "$2.1B",
+        "debt_to_equity": 2.29,
+        "cash": 185000000,
+        "cash_formatted": "$185M",
+        "operating_margin": 31.2,
+        "shares_outstanding": 220000000,
+        "shares_outstanding_formatted": "220M",
+        "eps": 0.75,
+        "pe_ratio": 16.8,
+        "quarterly_revenue": {
+          "Q1_2025": {
+            "revenue": 340000000,
+            "revenue_formatted": "$340M",
+            "estimate": 338000000,
+            "beat_miss": "beat",
+            "surprise_pct": 0.6
+          },
+          "Q2_2025": {
+            "revenue": 342000000,
+            "revenue_formatted": "$342M",
+            "estimate": 345000000,
+            "beat_miss": "miss",
+            "surprise_pct": -0.9
+          },
+          "Q3_2025": {
+            "revenue": 338000000,
+            "revenue_formatted": "$338M",
+            "estimate": 348000000,
+            "beat_miss": "miss",
+            "surprise_pct": -2.9
+          },
+          "Q4_2025": {
+            "revenue": 330000000,
+            "revenue_formatted": "$330M",
+            "estimate": 340000000,
+            "beat_miss": "miss",
+            "surprise_pct": -2.9
+          }
+        },
+        "ffo_per_share": 2.85,
+        "dividend_yield": 6.8,
+        "occupancy_rate": 87.3,
+        "portfolio_sqft": "42M sq ft",
+        "pct_floating_rate_debt": 62
+      },
+      "red_flags": [
+        "62% of debt is floating-rate — every 25bps rate increase costs $30M annually",
+        "Occupancy declined from 93.1% to 87.3% in 12 months — 580bps drop",
+        "Deferred maintenance backlog of $340M — capital expenditures systematically below required levels",
+        "Debt-to-equity of 2.29 is elevated even for REITs (peer median: 1.4)"
+      ],
+      "sec_filings": {
+        "10-K": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS\n\nPropCore REIT Inc. reported fiscal year 2025 rental income of $1.35 billion, an increase of 2.1% compared to the prior year. The modest growth was achieved despite a challenging operating environment characterized by rising vacancy rates and tenant consolidation across the Company's diversified commercial portfolio. The portfolio comprises approximately 42 million square feet of commercial space across 128 properties in 22 markets. Portfolio occupancy declined to 87.3% at December 31, 2025, from 93.1% at the end of the prior fiscal year, a decrease of 580 basis points. The occupancy decline was driven by several factors, including the departure of WeWork from three properties totaling 420,000 square feet, non-renewals by several mid-size tenants in the Company's suburban office portfolio, and softening demand in the Company's retail strip center assets.\n\nThe Company's capital structure includes $4.8 billion in total debt, with a debt-to-equity ratio of 2.29x. Management acknowledges that leverage is above the Company's long-term target range of 1.5-1.8x and is evaluating strategic alternatives including asset dispositions and a potential equity raise to reduce leverage. The Company's weighted average cost of debt was 5.8% for the fiscal year, an increase of 110 basis points from the prior year, reflecting the impact of higher benchmark rates on the Company's floating-rate borrowings.\n\nNote 15 — Debt and Interest Rate Exposure: Total debt of $4.8 billion includes $2.98 billion (62%) in floating-rate borrowings, primarily consisting of variable-rate term loans and revolving credit facilities indexed to SOFR. The Company estimates that each 25 basis point increase in benchmark interest rates results in approximately $30 million in additional annual interest expense. The Company has entered into interest rate swap agreements covering $800 million of floating-rate exposure through June 2026, but the remaining $2.18 billion of unhedged floating-rate debt represents significant interest rate risk. Management is actively evaluating additional hedging strategies and fixed-rate refinancing opportunities.\n\nNote 18 — Capital Expenditures and Deferred Maintenance: The Company incurred capital expenditures of $85 million during fiscal year 2025, compared to an estimated required run rate of $140 million to maintain the portfolio in its current condition. The cumulative deferred maintenance backlog is estimated at $340 million, primarily related to HVAC systems, roofing, and elevator modernization across the portfolio's older properties. Management has prioritized capital expenditures at properties with near-term lease expirations to maximize tenant retention but acknowledges that the deferred maintenance backlog presents a risk to property valuations and tenant satisfaction.",
+        "10-Q": "For the quarter ended December 31, 2025, PropCore REIT Inc. reported rental income of $330 million, a decrease of 2.4% from the prior quarter. Portfolio occupancy declined to 87.3% from 89.1% at the end of the prior quarter, primarily driven by the non-renewal of two office tenants and the previously announced WeWork departure from the Company's Midtown property. FFO per share was $0.68 for the quarter, below the consensus estimate of $0.72. The Company faces $680 million in debt maturities during FY2026, including $420 million in floating-rate term loans maturing in Q2 2026. Management is in discussions with lenders regarding refinancing but noted that current market conditions may result in less favorable terms than the existing facilities."
+      },
+      "news": [
+        {
+          "headline": "PropCore REIT Occupancy Drops to 87.3% as Tenant Departures Accelerate",
+          "date": "2026-01-20",
+          "source": "Reuters",
+          "summary": "PropCore REIT reported a significant decline in portfolio occupancy to 87.3%, down from 93.1% a year earlier. The 580 basis point drop marks the largest annual occupancy decline in the company's history. Management attributed the decline to challenging market conditions and tenant consolidation trends but maintained full-year FFO guidance."
+        },
+        {
+          "headline": "WeWork Exits Three PropCore Properties, Leaving 420K Sq Ft Vacant",
+          "date": "2025-09-30",
+          "source": "Bloomberg",
+          "summary": "WeWork has vacated three properties leased from PropCore REIT, totaling approximately 420,000 square feet across New York, San Francisco, and Chicago. The departures, part of WeWork's ongoing restructuring, will reduce PropCore's annual rental income by approximately $18 million. Analysts noted PropCore's exposure to coworking tenants as an underappreciated risk."
+        },
+        {
+          "headline": "PropCore's Floating-Rate Debt Exposure Raises Analyst Concerns",
+          "date": "2025-11-05",
+          "source": "MarketWatch",
+          "summary": "REIT analysts flagged PropCore's 62% floating-rate debt composition as a significant risk, noting that every 25 basis point rate increase costs the company approximately $30 million annually. With $2.18 billion in unhedged floating-rate exposure, PropCore is among the most rate-sensitive REITs in its peer group."
+        },
+        {
+          "headline": "PropCore Dividend Yield Hits 6.8% — Sustainability in Question",
+          "date": "2025-12-15",
+          "source": "Wall Street Journal",
+          "summary": "PropCore REIT's dividend yield has risen to 6.8% as the stock price declined 22% year-to-date. Several analysts questioned whether the dividend is sustainable given the company's declining occupancy, elevated leverage, and $340 million deferred maintenance backlog. Management reiterated its commitment to the current distribution but declined to comment on 2026 dividend policy."
+        },
+        {
+          "headline": "PropCore's $340M Deferred Maintenance Backlog Draws Scrutiny",
+          "date": "2026-02-08",
+          "source": "CNBC",
+          "summary": "Real estate analysts highlighted PropCore REIT's $340 million deferred maintenance backlog as a growing concern, noting the company spent only $85 million on capital improvements in FY2025 against an estimated required run rate of $140 million. 'This is a company that is borrowing from its future to maintain current cash flow,' wrote Green Street analyst David Chen."
+        }
+      ]
+    },
+    "ManufactCo": {
+      "full_name": "ManufactCo Industries Inc.",
+      "sector": "Industrial Manufacturing",
+      "ticker": "MFCO",
+      "fiscal_year": "FY2025",
+      "financials": {
+        "revenue": 3600000000,
+        "revenue_formatted": "$3.6B",
+        "revenue_yoy_change": 1.8,
+        "net_income": 195000000,
+        "net_income_formatted": "$195M",
+        "total_debt": 1900000000,
+        "total_debt_formatted": "$1.9B",
+        "total_equity": 2200000000,
+        "total_equity_formatted": "$2.2B",
+        "debt_to_equity": 0.86,
+        "cash": 310000000,
+        "cash_formatted": "$310M",
+        "operating_margin": 9.4,
+        "shares_outstanding": 195000000,
+        "shares_outstanding_formatted": "195M",
+        "eps": 1.00,
+        "pe_ratio": 14.5,
+        "quarterly_revenue": {
+          "Q1_2025": {
+            "revenue": 920000000,
+            "revenue_formatted": "$920M",
+            "estimate": 910000000,
+            "beat_miss": "beat",
+            "surprise_pct": 1.1
+          },
+          "Q2_2025": {
+            "revenue": 905000000,
+            "revenue_formatted": "$905M",
+            "estimate": 900000000,
+            "beat_miss": "beat",
+            "surprise_pct": 0.6
+          },
+          "Q3_2025": {
+            "revenue": 890000000,
+            "revenue_formatted": "$890M",
+            "estimate": 905000000,
+            "beat_miss": "miss",
+            "surprise_pct": -1.7
+          },
+          "Q4_2025": {
+            "revenue": 885000000,
+            "revenue_formatted": "$885M",
+            "estimate": 890000000,
+            "beat_miss": "miss",
+            "surprise_pct": -0.6
+          }
+        },
+        "pension_funded_status": -420000000,
+        "pension_funded_pct": 72,
+        "top_customer_pct_revenue": 67
+      },
+      "red_flags": [
+        "Pension underfunding of $420M (72% funded) — largest single off-balance-sheet liability",
+        "Top customer (Northrop Grumman) represents 67% of revenue — extreme concentration risk",
+        "Defense contract renewal due Q2 2026 — $2.4B contract value at risk",
+        "Operating margin at 9.4% is below manufacturing peer median of 12.1%"
+      ],
+      "sec_filings": {
+        "10-K": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS\n\nManufactCo Industries Inc. reported fiscal year 2025 revenue of $3.6 billion, an increase of 1.8% compared to the prior year. The modest growth reflects stable demand from the Company's primary defense and aerospace customer base, partially offset by softening in the industrial automation segment. Operating margin was 9.4% for the fiscal year, compared to 10.1% in the prior year. The margin contraction was driven by higher raw material costs, particularly specialty steel and titanium alloys, and labor cost inflation in the Company's manufacturing facilities. The Company employed approximately 14,200 workers across 8 manufacturing facilities in 5 states.\n\nThe Company's revenue concentration remains a significant strategic consideration. Approximately 67% of fiscal year 2025 revenue, or $2.41 billion, was derived from contracts and subcontracts with Northrop Grumman Corporation, the Company's largest customer. This concentration reflects ManufactCo's position as a Tier 1 supplier of precision-machined components for multiple Northrop Grumman defense programs. The primary master supply agreement with Northrop Grumman, valued at approximately $2.4 billion over its remaining term, expires in Q2 2026 and is subject to renegotiation. Management is confident in the Company's competitive position for contract renewal but acknowledges that any material change in contract terms could significantly impact future revenue and profitability.\n\nNote 16 — Pension and Other Post-Retirement Benefits: The Company sponsors defined benefit pension plans covering approximately 9,800 current and former employees. As of December 31, 2025, the projected benefit obligation (PBO) was $1.50 billion and the fair value of plan assets was $1.08 billion, resulting in an unfunded status of $420 million (72% funded ratio). The unfunded status increased from $310 million at the end of the prior year, primarily due to a 40 basis point decrease in the discount rate used to measure the obligation (from 5.2% to 4.8%) and lower-than-expected investment returns on plan assets. The Company contributed $45 million to the pension plan during fiscal year 2025 and expects required contributions of $55-65 million in FY2026 under ERISA funding rules. The pension obligation represents the Company's largest single off-balance-sheet liability and is subject to further deterioration if discount rates decline or investment returns underperform actuarial assumptions.",
+        "10-Q": "For the quarter ended December 31, 2025, ManufactCo Industries Inc. reported revenue of $885 million, slightly below the consensus estimate of $890 million. Operating margin was 8.9% for the quarter, impacted by a $12 million accelerated pension contribution and higher-than-expected tooling costs for a new defense program. The Company made a voluntary pension contribution of $45 million during Q4, reflecting management's commitment to improving the plan's funded status. Regarding the Northrop Grumman contract renewal, management stated that preliminary discussions are ongoing and that the Company has received positive indications regarding continuation of the relationship, although specific pricing and volume terms are still being negotiated. The Company expects a definitive outcome by the end of Q2 2026."
+      },
+      "news": [
+        {
+          "headline": "Analysts Flag ManufactCo's $420M Pension Gap as Growing Liability",
+          "date": "2025-11-20",
+          "source": "Reuters",
+          "summary": "Industrial analysts highlighted ManufactCo's $420 million pension underfunding as an underappreciated risk. The pension plan is only 72% funded, and declining interest rates could push the obligation higher. 'This is effectively hidden debt that doesn't appear on the balance sheet,' noted Bernstein analyst Robert Kim. Required contributions are expected to increase to $55-65 million annually."
+        },
+        {
+          "headline": "ManufactCo's 67% Revenue Dependence on Northrop Grumman Draws Scrutiny",
+          "date": "2025-10-15",
+          "source": "Bloomberg",
+          "summary": "ManufactCo Industries' extreme revenue concentration — 67% from a single customer, Northrop Grumman — has become a focus for investors as the $2.4 billion master supply agreement approaches its Q2 2026 renewal date. Analysts warn that any change in contract terms could materially affect ManufactCo's financial outlook."
+        },
+        {
+          "headline": "ManufactCo Defense Contract Renewal in 2026 Creates Binary Risk",
+          "date": "2026-01-10",
+          "source": "Wall Street Journal",
+          "summary": "ManufactCo Industries faces a pivotal moment as its $2.4 billion master supply agreement with Northrop Grumman comes up for renewal in Q2 2026. While management has expressed confidence in renewal, industry sources suggest Northrop Grumman is evaluating alternative suppliers for certain component categories. A loss or significant reduction of this contract would be transformative for ManufactCo."
+        },
+        {
+          "headline": "ManufactCo Misses Q3 Estimates as Margin Pressure Intensifies",
+          "date": "2025-10-28",
+          "source": "MarketWatch",
+          "summary": "ManufactCo Industries reported Q3 revenue of $890 million, missing the consensus estimate of $905 million by 1.7%. Operating margin declined to 9.1%, below the manufacturing peer median of 12.1%, as higher steel and titanium costs compressed profitability. The company maintained full-year guidance but acknowledged 'headwinds from input cost inflation.'"
+        },
+        {
+          "headline": "Competitor Precision Dynamics Wins $800M Contract Adjacent to ManufactCo's Core Work",
+          "date": "2025-12-22",
+          "source": "Defense News",
+          "summary": "Precision Dynamics Corp. was awarded an $800 million contract to supply precision-machined components for the next-generation defense platform, a program adjacent to ManufactCo's core work with Northrop Grumman. While the contract is with a different prime contractor, analysts noted it demonstrates the competitive threat ManufactCo faces as its own contract renewal approaches."
+        }
+      ]
+    },
+    "MedDevice": {
+      "full_name": "MedDevice Systems Corp.",
+      "sector": "Medical Devices",
+      "ticker": "MDSY",
+      "fiscal_year": "FY2025",
+      "financials": {
+        "revenue": 2800000000,
+        "revenue_formatted": "$2.8B",
+        "revenue_yoy_change": 6.2,
+        "net_income": 280000000,
+        "net_income_formatted": "$280M",
+        "total_debt": 1400000000,
+        "total_debt_formatted": "$1.4B",
+        "total_equity": 3100000000,
+        "total_equity_formatted": "$3.1B",
+        "debt_to_equity": 0.45,
+        "cash": 520000000,
+        "cash_formatted": "$520M",
+        "operating_margin": 18.6,
+        "shares_outstanding": 175000000,
+        "shares_outstanding_formatted": "175M",
+        "eps": 1.60,
+        "pe_ratio": 28.4,
+        "quarterly_revenue": {
+          "Q1_2025": {
+            "revenue": 680000000,
+            "revenue_formatted": "$680M",
+            "estimate": 670000000,
+            "beat_miss": "beat",
+            "surprise_pct": 1.5
+          },
+          "Q2_2025": {
+            "revenue": 710000000,
+            "revenue_formatted": "$710M",
+            "estimate": 700000000,
+            "beat_miss": "beat",
+            "surprise_pct": 1.4
+          },
+          "Q3_2025": {
+            "revenue": 720000000,
+            "revenue_formatted": "$720M",
+            "estimate": 725000000,
+            "beat_miss": "miss",
+            "surprise_pct": -0.7
+          },
+          "Q4_2025": {
+            "revenue": 690000000,
+            "revenue_formatted": "$690M",
+            "estimate": 710000000,
+            "beat_miss": "miss",
+            "surprise_pct": -2.8
+          }
+        },
+        "goodwill": 1200000000,
+        "goodwill_formatted": "$1.2B",
+        "fda_483_count": 2
+      },
+      "red_flags": [
+        "FDA Form 483 observation letter for Cardiofix implant manufacturing facility — 3 findings on quality systems",
+        "Goodwill impairment risk: $1.2B goodwill from PulseTech acquisition, with $210M write-down expected in Q1 2026",
+        "Q4 revenue miss driven by Cardiofix voluntary field correction — $40M revenue deferred",
+        "Product liability: 340 pending lawsuits related to legacy OrthoFlex hip implant"
+      ],
+      "sec_filings": {
+        "10-K": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS\n\nMedDevice Systems Corp. reported fiscal year 2025 revenue of $2.8 billion, an increase of 6.2% compared to the prior year. Growth was driven by strong performance in the cardiac division, which grew 14% year-over-year to $1.2 billion, and the orthopedic division, which grew 3% to $980 million. The neurostimulation segment contributed $620 million in revenue, up 2% from the prior year. Operating margin was 18.6%, reflecting the Company's premium product mix and manufacturing efficiencies. Net income was $280 million, or $1.60 per diluted share.\n\nThe Company's Cardiofix line of cardiac implants experienced a disruption in Q4 2025 following the receipt of an FDA Form 483 observation letter and the initiation of a voluntary field correction. These events are discussed in further detail below and in the accompanying notes.\n\nNote 8 — FDA Regulatory Matters: In November 2025, the FDA issued a Form 483 inspection observation letter to the Company following an inspection of the Cardiofix implant manufacturing facility in Minneapolis, Minnesota. The inspection identified 3 observations related to quality system controls, specifically: (1) inadequate documentation of design change verification for the Cardiofix Model C-400 series, (2) insufficient environmental monitoring in the cleanroom packaging area, and (3) gaps in the corrective and preventive action (CAPA) system for supplier quality deviations. The Company has submitted a corrective action plan to the FDA and is investing approximately $25 million in remediation activities. Additionally, in December 2025, the Company initiated a voluntary field correction affecting approximately 12,000 Cardiofix C-400 units distributed between August and November 2025. The field correction is precautionary and relates to a packaging integrity concern identified during routine quality audits. Revenue of approximately $40 million was deferred from Q4 2025 pending completion of the field correction. The Company does not anticipate a Warning Letter at this time but acknowledges that the FDA's review is ongoing.\n\nNote 11 — Goodwill and Intangible Assets: Goodwill totaled $1.2 billion at December 31, 2025, substantially all of which relates to the acquisition of PulseTech Medical in 2022 for $1.8 billion. PulseTech was acquired for its advanced neurostimulation technology platform and was expected to generate revenue of $950 million by FY2025. Actual PulseTech-related revenue for FY2025 was $620 million, approximately 35% below the acquisition projection. The Company performed its annual goodwill impairment test as of October 1, 2025, and determined that the fair value of the PulseTech reporting unit exceeded its carrying value by only 4%, which is below the Company's threshold for further analysis. Based on updated revenue projections and discount rate assumptions, management expects to record a goodwill impairment charge of approximately $210 million in Q1 2026. This non-cash charge will reduce the carrying value of goodwill but will not affect the Company's cash flows or debt covenants.\n\nNote 19 — Contingencies and Legal Proceedings: The Company is a defendant in approximately 340 pending lawsuits related to its legacy OrthoFlex hip implant system, which was voluntarily recalled in 2020 due to elevated revision rates. Plaintiffs allege design and manufacturing defects resulted in premature implant failure. The Company has accrued $85 million for estimated settlement costs, based on an analysis of resolved claims and pending case characteristics. However, management notes that the ultimate liability could range from $60 million to $180 million depending on trial outcomes and settlement dynamics. The Company's product liability insurance is expected to cover approximately $40 million of the total exposure.",
+        "10-Q": "For the quarter ended December 31, 2025, MedDevice Systems Corp. reported revenue of $690 million, below the consensus estimate of $710 million. The shortfall was primarily attributable to the voluntary field correction of Cardiofix C-400 units, which resulted in approximately $40 million of deferred revenue. Excluding the field correction impact, revenue would have been approximately $730 million, ahead of estimates. The cardiac division reported Q4 revenue of $270 million, down from $320 million in Q3, reflecting the field correction disruption. Operating margin was 16.8% for the quarter, below the full-year 18.6%, driven by $15 million in remediation costs related to the FDA Form 483 observations and the field correction. Regarding the goodwill impairment assessment, management confirmed that the Q1 2026 impairment charge of approximately $210 million for the PulseTech reporting unit remains the current best estimate, pending final valuation analysis."
+      },
+      "news": [
+        {
+          "headline": "FDA Issues Form 483 to MedDevice for Cardiofix Manufacturing Facility",
+          "date": "2025-11-18",
+          "source": "Reuters",
+          "summary": "The FDA issued a Form 483 observation letter to MedDevice Systems following an inspection of its Cardiofix implant manufacturing facility in Minneapolis. The letter cited 3 findings related to quality system controls, including design change documentation and cleanroom environmental monitoring. Shares fell 6% on the news as investors assessed potential regulatory risk to MedDevice's highest-growth product line."
+        },
+        {
+          "headline": "MedDevice to Take $210M Goodwill Write-Down on PulseTech Acquisition",
+          "date": "2026-01-15",
+          "source": "Bloomberg",
+          "summary": "MedDevice Systems disclosed it expects to record a goodwill impairment charge of approximately $210 million in Q1 2026 related to its 2022 acquisition of PulseTech Medical. PulseTech revenue has fallen 35% below acquisition projections, raising questions about the $1.8 billion deal. 'This is a significant admission that PulseTech has not met expectations,' noted Cowen analyst Michelle Park."
+        },
+        {
+          "headline": "MedDevice Cardiac Division Posts 14% Growth, Leads Company Performance",
+          "date": "2025-10-25",
+          "source": "MedTech Dive",
+          "summary": "MedDevice Systems' cardiac division reported 14% year-over-year growth to $1.2 billion in FY2025, driven by strong adoption of the Cardiofix implant platform. The cardiac segment has become the company's growth engine, though recent FDA scrutiny and the voluntary field correction have introduced uncertainty about near-term performance."
+        },
+        {
+          "headline": "MedDevice in Settlement Talks Over Legacy OrthoFlex Hip Implant Lawsuits",
+          "date": "2025-12-05",
+          "source": "Wall Street Journal",
+          "summary": "MedDevice Systems is reportedly in advanced settlement discussions regarding approximately 340 pending lawsuits related to its recalled OrthoFlex hip implant. Sources indicated a potential global settlement in the range of $120-150 million, above the $85 million currently accrued by the company. Resolution of the litigation would remove a significant overhang but could result in an additional charge of $35-65 million."
+        },
+        {
+          "headline": "MedDevice Misses Q4 Revenue Estimate on Cardiofix Field Correction",
+          "date": "2026-01-30",
+          "source": "MarketWatch",
+          "summary": "MedDevice Systems reported Q4 revenue of $690 million, missing the consensus estimate of $710 million due to a voluntary field correction affecting 12,000 Cardiofix C-400 units. The company deferred approximately $40 million in revenue pending completion of the correction. Analysts noted that underlying demand remains strong but expressed concern about the cumulative impact of regulatory and impairment headwinds."
+        }
+      ]
+    },
+    "FinTechPay": {
+      "full_name": "FinTechPay Inc.",
+      "sector": "Fintech / Payments",
+      "ticker": "FTPY",
+      "fiscal_year": "FY2025",
+      "financials": {
+        "revenue": 1600000000,
+        "revenue_formatted": "$1.6B",
+        "revenue_yoy_change": 24.8,
+        "net_income": -85000000,
+        "net_income_formatted": "-$85M",
+        "total_debt": 600000000,
+        "total_debt_formatted": "$600M",
+        "total_equity": 1800000000,
+        "total_equity_formatted": "$1.8B",
+        "debt_to_equity": 0.33,
+        "cash": 890000000,
+        "cash_formatted": "$890M",
+        "operating_margin": -5.3,
+        "shares_outstanding": 280000000,
+        "shares_outstanding_formatted": "280M",
+        "eps": -0.30,
+        "pe_ratio": null,
+        "quarterly_revenue": {
+          "Q1_2025": {
+            "revenue": 360000000,
+            "revenue_formatted": "$360M",
+            "estimate": 345000000,
+            "beat_miss": "beat",
+            "surprise_pct": 4.3
+          },
+          "Q2_2025": {
+            "revenue": 395000000,
+            "revenue_formatted": "$395M",
+            "estimate": 385000000,
+            "beat_miss": "beat",
+            "surprise_pct": 2.6
+          },
+          "Q3_2025": {
+            "revenue": 420000000,
+            "revenue_formatted": "$420M",
+            "estimate": 430000000,
+            "beat_miss": "miss",
+            "surprise_pct": -2.3
+          },
+          "Q4_2025": {
+            "revenue": 425000000,
+            "revenue_formatted": "$425M",
+            "estimate": 445000000,
+            "beat_miss": "miss",
+            "surprise_pct": -4.5
+          }
+        },
+        "total_payment_volume": "$142B",
+        "merchant_count": "380K",
+        "net_revenue_retention": 108,
+        "gross_margin": 42.5
+      },
+      "red_flags": [
+        "SEC informal inquiry into revenue recognition practices — timing of merchant sign-up bonuses",
+        "Q3-Q4 revenue misses after 8 consecutive beats — potential growth deceleration",
+        "Net loss of $85M despite $1.6B revenue — path to profitability uncertain",
+        "Merchant churn rate increased from 2.1% to 3.8% monthly in H2 2025"
+      ],
+      "sec_filings": {
+        "10-K": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS\n\nFinTechPay Inc. reported fiscal year 2025 revenue of $1.6 billion, an increase of 24.8% compared to the prior year, reflecting continued momentum in the Company's payments platform. Total payment volume (TPV) processed through the platform reached $142 billion for the fiscal year, an increase of 31% year-over-year. The merchant base grew to approximately 380,000 active merchants, an increase of 22% from the prior year. Net revenue retention was 108%, indicating that existing merchants continue to increase their use of the platform over time. Gross margin was 42.5% for the fiscal year, a decline of 180 basis points from the prior year, reflecting competitive pricing pressure and the impact of merchant incentive programs.\n\nThe Company reported a net loss of $85 million for fiscal year 2025, compared to a net loss of $62 million in the prior year. The increased loss was driven by continued investment in technology, sales, and marketing to capture market share in the rapidly evolving payments landscape. Operating margin was -5.3%. Management remains committed to achieving operating profitability by FY2027, contingent upon continued revenue growth and operating leverage in the Company's cost structure. However, the Company acknowledges that the growth deceleration observed in Q3 and Q4 2025 could extend the timeline to profitability if the trend persists.\n\nNote 22 — SEC Inquiry: In October 2025, the Company received an informal inquiry from the staff of the Securities and Exchange Commission regarding the Company's revenue recognition practices. The inquiry is focused on the timing and classification of merchant incentive payments, specifically whether approximately $48 million in merchant sign-up bonuses recorded in Q1 and Q2 2025 should have been recognized ratably over the expected merchant relationship period rather than recognized at the time of contract execution. The Company's current accounting treatment recognizes sign-up bonuses as a reduction to revenue at the time of payment, consistent with its interpretation of ASC 606. The Company is cooperating fully with the SEC staff and has provided requested documentation. Management believes the Company's revenue recognition practices are appropriate and in compliance with GAAP, but acknowledges that the SEC staff may reach a different conclusion. If the SEC were to require restatement, the impact would be a reclassification of approximately $48 million of revenue from Q1/Q2 2025 to later periods, which would reduce the Company's reported first-half growth rate.\n\nNote 25 — Merchant Metrics: Monthly merchant churn increased to 3.8% in Q4 2025 from 2.1% in Q1 2025. The increase in churn was concentrated in the small and micro-merchant segment (annual TPV below $500,000), which represents approximately 45% of the merchant base but only 12% of TPV. Management attributes the churn increase to competitive pricing from new market entrants and the normalization of pandemic-era digital payment adoption. The Company has launched a retention program targeting at-risk merchants and expects churn to stabilize in the 3.0-3.5% range by mid-2026.",
+        "10-Q": "For the quarter ended December 31, 2025, FinTechPay Inc. reported revenue of $425 million, below the consensus estimate of $445 million by 4.5%. The miss marked the second consecutive quarter of below-consensus performance following 8 consecutive quarterly beats. Sequential revenue growth decelerated to 1.2% from 6.3% in the prior quarter. Total payment volume was $38 billion for the quarter, up 22% year-over-year but representing a deceleration from the 35% growth rate in Q1. Monthly merchant churn increased to 3.8%, the highest level since the Company's IPO. Regarding the SEC informal inquiry, the Company continues to cooperate fully with the SEC staff and has not received any indication that the inquiry will be upgraded to a formal investigation. Management reiterated its belief that the Company's accounting practices are appropriate under GAAP."
+      },
+      "news": [
+        {
+          "headline": "SEC Opens Informal Inquiry into FinTechPay Revenue Recognition Practices",
+          "date": "2025-10-22",
+          "source": "Reuters",
+          "summary": "FinTechPay Inc. disclosed that the SEC has opened an informal inquiry into the company's revenue recognition practices, specifically the timing of $48 million in merchant sign-up bonuses. The inquiry focuses on whether the bonuses should be amortized over the merchant relationship period rather than recognized upfront. Shares fell 11% on the disclosure."
+        },
+        {
+          "headline": "FinTechPay Growth Decelerates as Q3-Q4 Misses End Consecutive Beat Streak",
+          "date": "2026-01-28",
+          "source": "Bloomberg",
+          "summary": "FinTechPay's run of 8 consecutive quarterly revenue beats ended emphatically with back-to-back misses in Q3 and Q4 2025. The Q4 miss of 4.5% was particularly concerning, as sequential growth decelerated sharply to 1.2%. Analysts debated whether the slowdown reflects temporary competitive dynamics or a more fundamental deceleration in the company's growth trajectory."
+        },
+        {
+          "headline": "FinTechPay Processes Record $142B in Payment Volume for FY2025",
+          "date": "2026-01-20",
+          "source": "TechCrunch",
+          "summary": "Despite recent revenue misses, FinTechPay Inc. processed a record $142 billion in total payment volume during FY2025, up 31% year-over-year. The milestone highlights the company's growing scale in the digital payments ecosystem. However, analysts noted that the gap between TPV growth (31%) and revenue growth (24.8%) suggests increasing pricing pressure."
+        },
+        {
+          "headline": "FinTechPay Merchant Churn Rises to 3.8% as Small Businesses Defect",
+          "date": "2025-12-10",
+          "source": "Wall Street Journal",
+          "summary": "FinTechPay's monthly merchant churn rate nearly doubled from 2.1% in Q1 to 3.8% in Q4 2025, raising concerns about the platform's competitiveness in the small business segment. While the churning merchants represent a small share of total payment volume, analysts noted that small merchant churn often precedes broader retention challenges."
+        },
+        {
+          "headline": "Stripe Launches Competing SMB Product, Intensifying Pressure on FinTechPay",
+          "date": "2025-11-30",
+          "source": "CNBC",
+          "summary": "Stripe unveiled a new small and medium business payments product with aggressive introductory pricing, directly targeting FinTechPay's core market segment. The launch comes at a challenging time for FinTechPay, which is already seeing rising merchant churn and decelerating growth. Analysts estimated the new competition could impact FinTechPay's merchant acquisition costs by 15-20%."
+        }
+      ]
+    },
+    "LogiFlow": {
+      "full_name": "LogiFlow Corp.",
+      "sector": "Logistics / Transportation",
+      "ticker": "LGFL",
+      "fiscal_year": "FY2025",
+      "financials": {
+        "revenue": 5200000000,
+        "revenue_formatted": "$5.2B",
+        "revenue_yoy_change": 3.4,
+        "net_income": 240000000,
+        "net_income_formatted": "$240M",
+        "total_debt": 2300000000,
+        "total_debt_formatted": "$2.3B",
+        "total_equity": 1900000000,
+        "total_equity_formatted": "$1.9B",
+        "debt_to_equity": 1.21,
+        "cash": 280000000,
+        "cash_formatted": "$280M",
+        "operating_margin": 7.8,
+        "shares_outstanding": 310000000,
+        "shares_outstanding_formatted": "310M",
+        "eps": 0.77,
+        "pe_ratio": 12.6,
+        "quarterly_revenue": {
+          "Q1_2025": {
+            "revenue": 1320000000,
+            "revenue_formatted": "$1.32B",
+            "estimate": 1300000000,
+            "beat_miss": "beat",
+            "surprise_pct": 1.5
+          },
+          "Q2_2025": {
+            "revenue": 1310000000,
+            "revenue_formatted": "$1.31B",
+            "estimate": 1320000000,
+            "beat_miss": "miss",
+            "surprise_pct": -0.8
+          },
+          "Q3_2025": {
+            "revenue": 1280000000,
+            "revenue_formatted": "$1.28B",
+            "estimate": 1300000000,
+            "beat_miss": "miss",
+            "surprise_pct": -1.5
+          },
+          "Q4_2025": {
+            "revenue": 1290000000,
+            "revenue_formatted": "$1.29B",
+            "estimate": 1280000000,
+            "beat_miss": "beat",
+            "surprise_pct": 0.8
+          }
+        },
+        "fleet_size": 18500,
+        "on_time_delivery_pct": 94.2,
+        "fuel_cost_pct_revenue": 28.4
+      },
+      "red_flags": [
+        "Top 3 contracts (38% of revenue) all renew in 2026 — simultaneous renewal creates concentrated risk",
+        "Union contract with 8,400 drivers expires March 2026 — last negotiation in 2022 resulted in 2-week strike",
+        "Fuel costs at 28.4% of revenue — unhedged exposure, every $10/bbl oil change = $65M impact",
+        "Operating margin of 7.8% is below logistics peer median of 9.5%"
+      ],
+      "sec_filings": {
+        "10-K": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS\n\nLogiFlow Corp. reported fiscal year 2025 revenue of $5.2 billion, an increase of 3.4% compared to the prior year. Growth was driven by modest volume increases across the Company's truckload and less-than-truckload (LTL) segments, partially offset by rate pressure in the spot market. The Company operated a fleet of approximately 18,500 tractors and 52,000 trailers as of December 31, 2025. On-time delivery performance was 94.2% for the fiscal year, consistent with industry standards. Operating margin was 7.8%, compared to 8.3% in the prior year, reflecting higher fuel costs and labor cost inflation.\n\nFuel costs represented 28.4% of revenue for the fiscal year, compared to 25.1% in the prior year. The Company does not maintain a formal fuel hedging program and is therefore exposed to fluctuations in diesel prices. Management estimates that every $10 per barrel change in crude oil prices impacts annual fuel costs by approximately $65 million. The Company recovers a portion of fuel cost increases through fuel surcharge programs, but the recovery typically lags actual cost increases by 30-60 days.\n\nNote 13 — Contract Concentration: The Company's three largest customers accounted for approximately 38% of fiscal year 2025 revenue, or $1.98 billion. The Company's largest customer relationship is with Amazon.com, Inc., which contributed approximately $1.1 billion in revenue under a master transportation services agreement that expires in June 2026. The second-largest customer is Walmart Inc., contributing approximately $520 million under an agreement expiring in September 2026. The third-largest is Target Corporation, contributing approximately $360 million under an agreement expiring in November 2026. The simultaneous renewal of all three major contracts within a single calendar year represents a concentrated risk. Management is in preliminary discussions with all three customers regarding renewal terms and is confident in the Company's competitive position, but acknowledges that pricing pressure and volume commitments are subject to negotiation.\n\nNote 17 — Labor Relations and Collective Bargaining: Approximately 8,400 of the Company's drivers are represented by Teamsters Local 952 under a collective bargaining agreement (CBA) that expires on March 31, 2026. The prior CBA negotiation in 2022 resulted in a 14-day work stoppage before a new agreement was ratified, with an estimated revenue impact of $45 million and additional costs of $12 million for service recovery and customer retention incentives. Management has commenced preliminary discussions with union leadership regarding the upcoming renewal and has budgeted for wage increases of 4-6% and enhanced benefit provisions. However, the union has publicly stated its intent to seek wage increases of 8-10% and improvements to scheduling and safety provisions, creating a significant gap between the parties' positions.",
+        "10-Q": "For the quarter ended December 31, 2025, LogiFlow Corp. reported revenue of $1.29 billion, slightly ahead of the consensus estimate of $1.28 billion. The modest beat was driven by a late-quarter surge in holiday shipping volumes. Operating margin was 7.5% for the quarter, below the full-year average of 7.8%, as diesel prices averaged $4.15 per gallon during the quarter compared to $3.85 in the prior quarter. Regarding the Amazon contract renewal, management noted that discussions have progressed to the term sheet stage and that the Company is optimistic about continuation of the relationship, though at potentially lower per-unit rates reflecting increased automation at Amazon fulfillment centers. The Teamsters CBA negotiation is scheduled to begin formally in January 2026, with the current agreement expiring March 31, 2026."
+      },
+      "news": [
+        {
+          "headline": "Amazon Contract Renewal Looms as Key Uncertainty for LogiFlow",
+          "date": "2026-01-18",
+          "source": "Reuters",
+          "summary": "LogiFlow Corp. faces a pivotal year as its $1.1 billion transportation services agreement with Amazon comes up for renewal in June 2026. While management has expressed optimism about the relationship, industry sources suggest Amazon is seeking 8-12% rate reductions and may allocate a larger share of volumes to its in-house logistics network. The outcome will significantly shape LogiFlow's financial trajectory."
+        },
+        {
+          "headline": "Teamsters Prepare for LogiFlow Contract Talks; 2022 Strike Still Fresh",
+          "date": "2026-01-05",
+          "source": "Bloomberg",
+          "summary": "Teamsters Local 952 is preparing for contract negotiations with LogiFlow Corp., with the current collective bargaining agreement expiring March 31, 2026. Union leadership has signaled demands for 8-10% wage increases, well above the 4-6% LogiFlow has budgeted. The 2022 negotiation resulted in a 14-day work stoppage that cost LogiFlow an estimated $45 million in lost revenue."
+        },
+        {
+          "headline": "Rising Fuel Costs Pressure LogiFlow Margins; No Hedging Program in Place",
+          "date": "2025-11-25",
+          "source": "Wall Street Journal",
+          "summary": "LogiFlow Corp.'s lack of a fuel hedging program has become a growing concern as diesel prices rose 12% during H2 2025. Fuel costs at 28.4% of revenue are the highest among LogiFlow's publicly traded peers. Analysts estimate that every $10 per barrel change in oil prices impacts LogiFlow's annual costs by approximately $65 million, with only partial recovery through fuel surcharges."
+        },
+        {
+          "headline": "LogiFlow Announces $200M Fleet Electrification Investment Over 3 Years",
+          "date": "2025-10-08",
+          "source": "FreightWaves",
+          "summary": "LogiFlow Corp. announced a $200 million investment in fleet electrification, targeting conversion of 2,000 tractors to electric by 2028. The initiative aims to reduce fuel cost exposure and meet sustainability commitments from key customers including Amazon and Walmart. Analysts noted the investment is strategically sound but adds to near-term capital requirements at a time when margins are already under pressure."
+        },
+        {
+          "headline": "Autonomous Trucking Advances Threaten Traditional Carriers Like LogiFlow",
+          "date": "2025-12-18",
+          "source": "CNBC",
+          "summary": "The rapid progress of autonomous trucking technology poses a long-term competitive threat to traditional carriers like LogiFlow Corp. Several competitors have announced partnerships with autonomous vehicle companies, with limited commercial deployments beginning on high-volume interstate routes. Analysts noted that LogiFlow's heavy reliance on unionized drivers could become a cost disadvantage as autonomous technology matures."
+        }
+      ]
+    }
+  },
+  "ground_truth": {
+    "session_1": {
+      "company": "TechCorp",
+      "perfect_analysis_includes": [
+        "Revenue of $4.2B with 3.1% YoY growth",
+        "High debt-to-equity ratio of 1.81 (well above sector median)",
+        "CEO change — Robert Martinez departed, Sarah Chen appointed",
+        "Q3 2025 earnings miss of 8.1% below consensus",
+        "Debt covenant violation — leverage ratio of 1.83x exceeded 1.5x limit",
+        "Temporary waiver obtained from lenders through March 2026",
+        "Investment recommendation with risk assessment"
+      ]
+    },
+    "session_2": {
+      "company": "HealthCo",
+      "perfect_analysis_includes": [
+        "Revenue of $2.1B, declining 5.2% YoY",
+        "3 consecutive quarters of revenue decline (accelerating)",
+        "Heavy R&D spend at 16.2% of revenue",
+        "FDA approval pending for Nexaviron — binary risk event",
+        "Hepatotoxicity safety concern flagged by FDA",
+        "Related-party transaction: $42M deal with board member's firm",
+        "Investment recommendation acknowledging catalyst dependency"
+      ]
+    },
+    "session_3": {
+      "company": "comparison",
+      "perfect_analysis_includes": [
+        "Side-by-side financial comparison of both companies",
+        "TechCorp has higher leverage risk (D/E 1.81 vs 0.67)",
+        "HealthCo has revenue trajectory risk (declining vs growing)",
+        "Both have governance concerns (CEO change vs related-party)",
+        "Different risk profiles: TechCorp is leverage risk, HealthCo is pipeline/revenue risk",
+        "Relative valuation comparison",
+        "Clear investment recommendation between the two"
+      ]
+    },
+    "session_4": {
+      "company": "follow_up",
+      "perfect_analysis_includes": [
+        "TechCorp debt-to-equity of 1.81 and covenant violation details",
+        "HealthCo lower leverage (0.67) but cash declining",
+        "TechCorp covenant breach — waiver expires March 2026",
+        "Risk narrative: TechCorp leverage is acute near-term risk",
+        "HealthCo debt risk is manageable but could worsen if Nexaviron fails",
+        "Contextual insight connecting leadership changes to financial risk"
+      ]
+    },
+    "session_5": {
+      "company": "RetailMax",
+      "perfect_analysis_includes": [
+        "Revenue of $6.8B with 8% growth",
+        "Operating margin compression from 7.2% to 5.1%",
+        "Inventory days increasing from 60 to 95 (major red flag)",
+        "Growth is primarily store-opening driven, not organic (same-store only 1.2%)",
+        "Debt-funded expansion — $3.2B total debt, D/E of 1.52",
+        "High-coupon debt issuance (6.75%) signals credit concern",
+        "Investment recommendation with risk assessment",
+        "Ideally: agent checks debt early (procedural memory from prior sessions)"
+      ]
+    },
+    "session_6": {
+      "company": "EnergyX",
+      "perfect_analysis_includes": [
+        "Revenue of $8.9B, declining 12.4% YoY driven by oil price decline from $82 to $68/bbl",
+        "Reserve replacement ratio of 0.68x — depleting reserves faster than replacing them",
+        "Debt covenant near-breach: interest coverage at 3.2x vs 3.0x minimum, only $45M EBITDA cushion",
+        "If oil stays below $70/bbl in Q1 2026, covenant breach is likely",
+        "Operating margin compressed from 22.1% to 14.2% — 790 basis point decline",
+        "Q4 beat provides some positive signal but full-year trend is clearly negative",
+        "Investment recommendation with risk assessment acknowledging commodity price dependency"
+      ]
+    },
+    "session_7": {
+      "company": "BankFirst",
+      "perfect_analysis_includes": [
+        "NPL ratio surged to 3.8% from 1.9% — double the peer median of 1.8%",
+        "CRE exposure at 34.2% of loan book, concentrated in distressed office and retail sectors",
+        "Specific risk: $180M Harmon Plaza loan on non-accrual after anchor tenant departure",
+        "Loan loss provisions increased 156% YoY to $285M with management expecting further deterioration",
+        "Net interest margin compressed 45bps as funding costs outpaced asset yields",
+        "Deposit outflows of $2.8B for the year signal depositor confidence concerns",
+        "Investment recommendation with risk assessment on credit cycle trajectory"
+      ]
+    },
+    "session_8": {
+      "company": "PropCore",
+      "perfect_analysis_includes": [
+        "62% floating-rate debt exposure — every 25bps rate increase costs $30M annually",
+        "Occupancy declined from 93.1% to 87.3% in 12 months — 580bps drop, largest in company history",
+        "Deferred maintenance backlog of $340M with capex of only $85M vs $140M required run rate",
+        "Debt-to-equity of 2.29 is well above REIT peer median of 1.4",
+        "WeWork departure from 3 properties left 420K sq ft vacant",
+        "$680M in debt maturities during FY2026 creates refinancing risk",
+        "Investment recommendation with risk assessment on rate sensitivity and occupancy trajectory"
+      ]
+    },
+    "session_9": {
+      "company": "ManufactCo",
+      "perfect_analysis_includes": [
+        "Pension underfunding of $420M (72% funded) — largest off-balance-sheet liability",
+        "Top customer Northrop Grumman represents 67% of revenue — extreme concentration risk",
+        "Defense contract renewal ($2.4B value) due Q2 2026 — binary risk event",
+        "Competitor Precision Dynamics winning adjacent contracts signals competitive threat",
+        "Operating margin at 9.4% below manufacturing peer median of 12.1%",
+        "Investment recommendation with risk assessment focused on contract renewal outcome"
+      ]
+    },
+    "session_10": {
+      "company": "MedDevice",
+      "perfect_analysis_includes": [
+        "FDA Form 483 with 3 quality system observations for Cardiofix manufacturing facility",
+        "Voluntary field correction of 12,000 Cardiofix units — $40M revenue deferred in Q4",
+        "Goodwill impairment: $210M write-down expected in Q1 2026 on PulseTech acquisition (revenue 35% below projections)",
+        "Product liability: 340 pending OrthoFlex lawsuits with potential exposure of $60-180M vs $85M accrued",
+        "Strong underlying growth in cardiac division (14% YoY) partially offset by regulatory and impairment headwinds",
+        "Investment recommendation weighing growth potential against regulatory and legal risks"
+      ]
+    }
+  }
+}
