@@ -64,14 +64,15 @@ Return as JSON:
 
 Return ONLY valid JSON, nothing else."""
 
-EXTRACT_FACTS_PROMPT = """Extract all factual knowledge discovered during this research session.
+EXTRACT_FACTS_PROMPT = """Extract the most important factual knowledge discovered during this research session.
+Limit to the TOP 15 most important facts (key financial metrics, risk indicators, and critical findings).
 
 TASK: {task}
 
 TRAJECTORY:
 {trajectory}
 
-Format as entity-attribute-value triples.
+Format as entity-attribute-value triples. Keep values concise.
 Return as JSON:
 {{
   "facts": [
@@ -79,7 +80,7 @@ Return as JSON:
       "entity": "Company or subject name",
       "attribute": "The specific metric or property",
       "value": "The value discovered",
-      "context": "Additional context (time period, source, etc.)"
+      "context": "Brief context (time period, source)"
     }}
   ]
 }}
@@ -184,8 +185,9 @@ class Consolidator:
         return metrics
 
     # Consolidation calls need more output tokens than agent calls
-    # because they produce structured JSON with many items
-    CONSOLIDATION_MAX_TOKENS = 8192
+    # because they produce structured JSON with many items.
+    # 16384 gives headroom; if model caps lower, truncated JSON repair kicks in.
+    CONSOLIDATION_MAX_TOKENS = 16384
 
     def _extract_lessons(
         self, task: str, trajectory_text: str, final_answer: str, metrics: dict
@@ -241,7 +243,8 @@ class Consolidator:
         metrics["total_cost_usd"] += response.get("cost_usd", 0)
 
         content = response.get("content", "")
-        facts = self._parse_json_field(content, "facts")
+        was_truncated = response.get("stop_reason") == "length"
+        facts = self._parse_json_field(content, "facts", truncated=was_truncated)
         if not facts:
             stop = response.get("stop_reason", "?")
             print(f"    [consolidator] Fact extraction returned 0 facts "
@@ -322,8 +325,13 @@ class Consolidator:
             lines.append("")
         return "\n".join(lines)
 
-    def _parse_json(self, text: str) -> dict | list | None:
-        """Parse JSON from LLM response, handling markdown code blocks and edge cases."""
+    def _parse_json(self, text: str, repair_truncated: bool = False) -> dict | list | None:
+        """Parse JSON from LLM response, handling markdown code blocks and edge cases.
+
+        Args:
+            text: Raw LLM response text
+            repair_truncated: If True, attempt to salvage partial JSON from truncated output
+        """
         text = text.strip()
 
         # Strip BOM if present
@@ -361,17 +369,66 @@ class Consolidator:
             except json.JSONDecodeError:
                 pass
 
+        # Attempt to repair truncated JSON (e.g., from stop_reason=length)
+        if repair_truncated and text:
+            repaired = self._repair_truncated_json(text)
+            if repaired is not None:
+                return repaired
+
         return None
 
-    def _parse_json_field(self, text: str, field: str) -> list[dict]:
+    def _repair_truncated_json(self, text: str) -> list[dict] | None:
+        """Attempt to salvage entries from truncated JSON array output.
+
+        When the model hits max_tokens mid-JSON, we get something like:
+          {"facts": [{"entity": "A", ...}, {"entity": "B", ...}, {"ent
+        This finds the last complete object and closes the structure.
+        """
+        # Find the start of the array
+        arr_start = text.find("[")
+        if arr_start < 0:
+            return None
+
+        arr_text = text[arr_start:]
+
+        # Walk backwards from the end to find the last complete "}" that ends an object
+        last_complete = -1
+        depth = 0
+        for i in range(len(arr_text) - 1, -1, -1):
+            ch = arr_text[i]
+            if ch == "}":
+                if depth == 0:
+                    # Check if closing this brace yields a valid array
+                    candidate = arr_text[: i + 1] + "]"
+                    try:
+                        result = json.loads(candidate)
+                        if isinstance(result, list) and result:
+                            print(f"    [consolidator] Repaired truncated JSON: "
+                                  f"salvaged {len(result)} items")
+                            return result
+                    except json.JSONDecodeError:
+                        pass
+                depth += 1
+            elif ch == "{":
+                depth -= 1
+
+        return None
+
+    def _parse_json_field(self, text: str, field: str, truncated: bool = False) -> list[dict]:
         """Parse a specific list field from JSON response.
 
         Handles multiple formats:
         - {"field": [...]}           — standard wrapper
         - [...]                      — raw array (no wrapper key)
         - {"other_key": [...]}       — alternative key names
+
+        Args:
+            truncated: If True, attempt to repair truncated JSON on initial parse failure
         """
         data = self._parse_json(text)
+        if data is None and truncated and text:
+            # First parse failed on truncated output — try repair
+            data = self._parse_json(text, repair_truncated=True)
         if data is None:
             print(f"    [consolidator] WARNING: Failed to parse JSON for '{field}'")
             if text:
